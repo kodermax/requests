@@ -13,6 +13,6 @@ export const Header = () => (
       Counter
     </Link>
   </div>
-)
+);
 
 export default Header
