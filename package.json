@@ -26,6 +26,7 @@
     "compile": {
       "command": "babel-node bin/compile",
       "env": {
+        "NODE_ENV": "production",
         "DEBUG": "app:*"
       }
     },
@@ -59,6 +60,7 @@
     "start": {
       "command": "babel-node bin/server",
       "env": {
+        "NODE_ENV": "production",
         "DEBUG": "app:*"
       }
     },

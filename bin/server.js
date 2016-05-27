@@ -8,7 +8,7 @@ const host = config.server_host;
 if (config.env !== 'development') {
   server.listen(port);
 } else {
-  server.listen(port, host);
+  server.listen(port);
 }
 
 debug(`Server is now running at http://${host}:${port}.`);
