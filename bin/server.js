@@ -6,7 +6,7 @@ const debug = _debug('app:bin:server');
 const port = config.server_port;
 const host = config.server_host;
 if (config.env !== 'development') {
-  server.listen(port);
+  server.listen(port, '0.0.0.0');
 } else {
   server.listen(port, host);
 }
