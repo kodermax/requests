@@ -13,6 +13,7 @@
     "lint": "eslint src tests server",
     "lint:fix": "npm run lint -- --fix",
     "start": "better-npm-run start",
+    "heroku_start": "better-npm-run heroku",
     "dev": "better-npm-run dev",
     "dev:no-debug": "npm run dev -- --no_debug",
     "test": "better-npm-run test",
@@ -40,6 +41,13 @@
     "deploy": {
       "command": "npm run clean && npm run compile",
       "env": {
+        "DEBUG": "app:*"
+      }
+    },
+    "heroku": {
+      "command": "npm run clean && npm run compile && npm run start",
+      "env": {
+        "NODE_ENV": "production",
         "DEBUG": "app:*"
       }
     },
