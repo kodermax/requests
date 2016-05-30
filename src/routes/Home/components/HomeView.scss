@@ -26,7 +26,9 @@
 .g-cols > div {
   border-color: #e0e0e0;
 }
-
+.g-cols:after {
+  clear: both;
+}
 .w-iconbox.iconpos_top {
   max-width: 350px;
 }
@@ -78,4 +80,35 @@
   line-height: 18px;
   height: 20px;
   padding: 2px 0;
+}
+.items{
+    margin: 0;
+    list-style: none;
+}
+.items li {
+    line-height: 1.5em;
+    padding: 8px 0 8px 20px;
+    margin: 0;
+    position: relative;
+    text-align: left;
+}
+.items li:before {
+  position: relative;
+  top: 5px;
+  left: -4px;
+  content: '\e647';
+  font-family: mdfonticon;
+  font-size: 20px;
+  opacity: 0.5;
+}
+.items li a {
+  color: #7049ba;
+  outline: 0;
+  text-decoration: none;
+  background-color: transparent;
+  transition-property: background-color,box-shadow,border,color,opacity,transform;
+  transition-duration: 0.3s;
+}
+.items li {
+  line-height: 1.1em;
 }
