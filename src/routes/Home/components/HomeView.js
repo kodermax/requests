@@ -1,12 +1,14 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import classes from './HomeView.scss';
+import {Button} from 'react-biz/lib/button';
 
 const cx = classNames.bind(classes);
 
 export const HomeView = () => (
   <div>
     <h4>Добро пожаловать!</h4>
+    <Button label='Bookmark' raised primary />
     <div className={cx('g-cols')}>
       <div className={cx('one-third')}>
         <div className={cx('w-iconbox', 'iconpos_top', 'size_medium', 'style_circle', 'color_light')}>

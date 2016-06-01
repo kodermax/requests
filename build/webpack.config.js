@@ -16,7 +16,7 @@ const webpackConfig = {
   devtool: config.compiler_devtool,
   resolve: {
     root: paths.client(),
-    extensions: ['', '.js', '.jsx', '.json']
+    extensions: ['', '.js', '.jsx', '.json', '.scss']
   },
   module: {}
 };
@@ -148,7 +148,7 @@ const BASE_CSS_LOADER = 'css?sourceMap&-minimize';
 // Add any packge names here whose styles need to be treated as CSS modules.
 // These paths will be combined into a single regex.
 const PATHS_TO_TREAT_AS_CSS_MODULES = [
-  // 'react-toolbox', (example)
+  'react-biz'
 ];
 
 // If config has CSS modules enabled, treat this project's styles as CSS modules.
@@ -158,7 +158,7 @@ if (config.compiler_css_modules) {
   );
 }
 
-const isUsingCSSModules = !!PATHS_TO_TREAT_AS_CSS_MODULES.length
+const isUsingCSSModules = !!PATHS_TO_TREAT_AS_CSS_MODULES.length;
 const cssModulesRegex = new RegExp(`(${PATHS_TO_TREAT_AS_CSS_MODULES.join('|')})`);
 
 // Loaders for styles that need to be treated as CSS modules.
