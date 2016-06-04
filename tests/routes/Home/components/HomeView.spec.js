@@ -9,9 +9,9 @@ describe('(View) Home', () => {
     _component = render(<HomeView />);
   });
 
-  it('Renders a welcome message', () => {
+  it('Наличие пункта АХД', () => {
     const welcome = _component.find('h4');
     expect(welcome).to.exist;
-    expect(welcome.text()).to.match(/Добро пожаловать!/);
+    expect(welcome.text()).to.match(/АХД/);
   });
 });

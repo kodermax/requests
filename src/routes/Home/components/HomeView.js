@@ -1,16 +1,11 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import classes from './HomeView.scss';
-import {Button} from 'react-biz/lib/button';
-import AppBar from 'react-biz/lib/app_bar';
 
 const cx = classNames.bind(classes);
 
 export const HomeView = () => (
   <div>
-    <AppBar flat>
-      <Button label='Мои заявки' raised primary />
-    </AppBar>
     <div className={cx('g-cols')}>
       <div className={cx('one-third')}>
         <div className={cx('w-iconbox', 'iconpos_top', 'size_medium', 'style_circle', 'color_light')}>
@@ -21,7 +16,7 @@ export const HomeView = () => (
               <li><a href=''>Канцелярия</a></li>
               <li><a href=''>Курьер</a></li>
               <li><a href=''>Организация рабочего места</a></li>
-              <li><a href=''>Закупка мебелт</a></li>
+              <li><a href=''>Закупка мебели</a></li>
               <li><a href=''>Закупка ТМЦ</a></li>
               <li><a href=''>Визитки</a></li>
               <li><a href=''>Уборка помещения</a></li>
