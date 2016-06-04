@@ -21,7 +21,7 @@ if (config.proxy && config.proxy.enabled) {
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement isomorphic
 // rendering, you'll want to remove this middleware.
- app.use(convert(historyApiFallback({
+app.use(convert(historyApiFallback({
   verbose: false
 })));
 

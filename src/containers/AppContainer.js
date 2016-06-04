@@ -12,13 +12,12 @@ class AppContainer extends React.Component {
 
   render () {
     const { history, routes, routerKey, store } = this.props;
-
     return (
-        <Provider store={store}>
-          <div style={{ height: '100%' }}>
-            <Router history={history} children={routes} key={routerKey} />
-          </div>
-        </Provider>
+      <Provider store={store}>
+        <div style={{ height: '100%' }}>
+          <Router history={history} children={routes} key={routerKey} />
+        </div>
+      </Provider>
     );
   }
 }
