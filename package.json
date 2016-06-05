@@ -8,6 +8,7 @@
     "npm": "^3.0.0"
   },
   "scripts": {
+    "backend": "better-npm-run backend",
     "clean": "rimraf dist",
     "compile": "better-npm-run compile",
     "lint": "eslint src tests server",
@@ -24,6 +25,9 @@
     "codecov": "cat coverage/*/lcov.info | codecov"
   },
   "betterScripts": {
+    "backend": {
+      "command": "babel-node backend/main"
+    },
     "compile": {
       "command": "babel-node bin/compile",
       "env": {
@@ -68,6 +72,7 @@
     "start": {
       "command": "babel-node bin/server",
       "env": {
+        "NODE_ENV": "development",
         "DEBUG": "app:*"
       }
     },
@@ -110,12 +115,12 @@
     "imports-loader": "^0.6.5",
     "ip": "^1.1.2",
     "json-loader": "^0.5.4",
-    "koa": "^2.0.0-alpha.3",
+    "koa": "^2.0.0",
     "koa-connect-history-api-fallback": "^0.3.0",
     "koa-convert": "^1.2.0",
     "koa-proxy": "^0.6.0",
+    "koa-router": "^7.0.1",
     "koa-static": "^2.0.0",
-    "material-ui": "^0.15.0",
     "node-sass": "^3.7.0",
     "normalize.css": "^4.1.1",
     "postcss-loader": "^0.9.0",
