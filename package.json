@@ -9,9 +9,9 @@
   },
   "scripts": {
     "backend": "better-npm-run backend",
-    "clean": "rimraf dist",
+    "clean": "rimraf frontend/dist",
     "compile": "better-npm-run compile",
-    "lint": "eslint src tests server",
+    "lint": "eslint frontend/src frontend/tests frontend/server",
     "lint:fix": "npm run lint -- --fix",
     "start": "better-npm-run start",
     "heroku_start": "better-npm-run heroku",
@@ -29,14 +29,14 @@
       "command": "babel-node backend/main"
     },
     "compile": {
-      "command": "babel-node bin/compile",
+      "command": "babel-node frontend/bin/compile",
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "app:*"
       }
     },
     "dev": {
-      "command": "nodemon --exec babel-node bin/server",
+      "command": "nodemon --exec babel-node frontend/bin/server",
       "env": {
         "NODE_ENV": "development",
         "DEBUG": "app:*"
@@ -70,14 +70,14 @@
       }
     },
     "start": {
-      "command": "babel-node bin/server",
+      "command": "babel-node frontend/bin/server",
       "env": {
         "NODE_ENV": "development",
         "DEBUG": "app:*"
       }
     },
     "test": {
-      "command": "babel-node ./node_modules/karma/bin/karma start build/karma.conf",
+      "command": "babel-node ./node_modules/karma/bin/karma start frontend/build/karma.conf",
       "env": {
         "NODE_ENV": "test",
         "DEBUG": "app:*"

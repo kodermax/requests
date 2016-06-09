@@ -1,7 +1,7 @@
-blueprints/**/files/**
-coverage/**
+frontend/blueprints/**/files/**
+frontend/coverage/**
 node_modules/**
-dist/**
+frontend/dist/**
 *.spec.js
-src/index.html
+frontend/src/index.html
 

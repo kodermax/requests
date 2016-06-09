@@ -7,7 +7,6 @@ import ip from 'ip';
 const localip = ip.address();
 const debug = _debug('app:config');
 debug('Creating default configuration.');
-
 // ========================================================
 // Default Configuration
 // ========================================================
@@ -90,7 +89,7 @@ config.globals = {
 // ------------------------------------
 // Validate Vendor Dependencies
 // ------------------------------------
-const pkg = require('../package.json');
+const pkg = require('../../package.json');
 
 config.compiler_vendor = config.compiler_vendor
   .filter((dep) => {
