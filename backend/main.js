@@ -1,10 +1,10 @@
-import Koa from 'koa';
+const Koa = require('koa');
 // Middleware and helpers
-import Router from 'koa-router';
-import bodyParser from 'koa-bodyparser';
+const Router = require('koa-router');
+const bodyParser = require('koa-bodyparser');
 
 // Import rethinkdb
-import r from 'rethinkdb';
+const r = require('rethinkdb');
 
 // Load config for RethinkDB and koa
 var config = {
@@ -21,10 +21,14 @@ var config = {
 
 const app = new Koa();
 const router = new Router();
-app.use(bodyParser());
+app.use(bodyParser({
+  extendTypes: {
+    json: ['application/json'] // will parse application/x-javascript type body as a JSON string
+  }
+}));
 
 // Create a RethinkDB connection
-app.use(async (ctx, next) => {
+app.use(async(ctx, next) => {
   ctx.db = await r.connect(config.rethinkdb);
   return next();
 });
@@ -34,6 +38,7 @@ router.get('/get', async (ctx, next) => {
   }).then(function (result) {
     return JSON.stringify(result);
   });
+  ctx.type = 'application/json';
   return next();
 });
 app.use(router.routes());
