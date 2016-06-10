@@ -2,7 +2,7 @@ const Koa = require('koa');
 // Middleware and helpers
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
-
+const requests = require('./controllers/requests');
 // Import rethinkdb
 const r = require('rethinkdb');
 
@@ -32,15 +32,7 @@ app.use(async(ctx, next) => {
   ctx.db = await r.connect(config.rethinkdb);
   return next();
 });
-router.get('/get', async (ctx, next) => {
-  ctx.body = await r.table('tv_shows').run(ctx.db).then(function (cursor) {
-    return cursor.toArray();
-  }).then(function (result) {
-    return JSON.stringify(result);
-  });
-  ctx.type = 'application/json';
-  return next();
-});
+router.get('/requests/', requests.all);
 app.use(router.routes());
 // Close the RethinkDB connection
 app.use(async (ctx, next) => {
