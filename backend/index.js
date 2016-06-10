@@ -12,7 +12,7 @@ app.use(ctx => { ctx.status = 404; });
   const conn = await connectDatabase(development);
   app.context.db = conn;
   console.log(`Connected to database ${conn.host}:${conn.port}`);
-  await app.listen(3000);
-  console.log('Server started on port 3000');
+  await app.listen(3001);
+  console.log('API Server started on port 3001');
 })();
 

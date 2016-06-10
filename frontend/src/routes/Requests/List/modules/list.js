@@ -1,55 +1,66 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const COUNTER_INCREMENT = 'COUNTER_INCREMENT';
+export const FETCH_ITEMS_REQUEST = 'FETCH_ITEMS_REQUEST';
+export const FETCH_ITEMS_SUCCESS = 'FETCH_ITEMS_SUCCESS';
+export const FETCH_ITEMS_FAILURE = 'FETCH_ITEMS_FAILURE';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function increment (value = 1) {
+function requestItems () {
+  console.log('request');
   return {
-    type: COUNTER_INCREMENT,
-    payload: value
+    didInvalidate: false,
+    type: FETCH_ITEMS_REQUEST,
+    isFetching: true
   };
 }
-
-/*  This is a thunk, meaning it is a function that immediately
- returns a function for lazy evaluation. It is incredibly useful for
- creating async actions, especially when combined with redux-thunk!
-
- NOTE: This is solely for demonstration purposes. In a real application,
- you'd probably want to dispatch an action of COUNTER_DOUBLE and let the
- reducer take care of this logic.  */
-
-export const doubleAsync = () => {
+function receiveItems (result) {
+  return {
+    data: result,
+    isFetching: false,
+    didInvalidate: false,
+    type: FETCH_ITEMS_SUCCESS
+  };
+}
+function invalidItems (error) {
+  return {
+    data: error,
+    isFetching: false,
+    didInvalidate: true,
+    type: FETCH_ITEMS_FAILURE
+  };
+}
+export const fetchItems = () => {
   return (dispatch, getState) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        dispatch(increment(getState().counter));
-        resolve();
-      }, 200);
-    });
+    dispatch(requestItems());
+    return fetch('http://dev.pharm.local:3001/api/requests')
+      .then(response => response.json())
+      .then(json => dispatch(receiveItems(json)))
+      .catch(error => dispatch(invalidItems(error)));
   };
 };
-
 export const actions = {
-  increment,
-  doubleAsync
+  fetchItems
 };
-
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [COUNTER_INCREMENT]: (state, action) => state + action.payload
+  [FETCH_ITEMS_SUCCESS]: (state, action) => action.data,
+  [FETCH_ITEMS_FAILURE]: (stat, action) => action.data
 };
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0;
-export default function counterReducer (state = initialState, action) {
+const initialState = {
+  isFetching: false,
+  data: {}
+};
+export default function listReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];
-
   return handler ? handler(state, action) : state;
 }
+

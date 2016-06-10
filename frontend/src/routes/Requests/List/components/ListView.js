@@ -52,6 +52,13 @@ const users = [
 
 export default class ListView extends React.Component {
   state = { selected: [], source: users };
+  static propTypes = {
+    fetchItems: React.PropTypes.func.isRequired
+  };
+  componentDidMount = () => {
+    this.props.fetchItems();
+  };
+
   handleChange = (row, key, value) => {
     const source = this.state.source;
     source[row][key] = value;
