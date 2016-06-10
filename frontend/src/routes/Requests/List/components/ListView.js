@@ -44,9 +44,9 @@ const requestColumns = {
 };
 
 const users = [
-  {id: '213', title: 'Заявка на канц. товары', createdBy: 'Карпычев Максим', changedBy: 'Романенко Юрий', messages: 3,
+  {id: '213', title: 'Заявка на канц. товары', createdBy: 'Максим', changedBy: 'Юрий', messages: 3,
   category: 'АХД - Канцтовары', status: 'В Работе'},
-  {id: '213', title: 'Заявка на цветы', createdBy: 'Карпычев Максим', changedBy: 'Романенко Юрий', messages: 3,
+  {id: '213', title: 'Заявка на цветы', createdBy: ' Максим', changedBy: 'Юрий', messages: 3,
     category: 'АХД - Канцтовары', status: 'В Работе'}
 ];
 
