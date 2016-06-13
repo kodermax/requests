@@ -9,7 +9,7 @@ export const Header = () => (
     <h1>Заявки</h1>
     <AppBar flat>
       <Link to='/list'>
-        <Button label='Мои заявки' raised primary/>
+        <Button label='Мои заявки' raised primary />
       </Link>
     </AppBar>
     <LoadingBar />
