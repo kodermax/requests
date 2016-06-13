@@ -9,7 +9,6 @@ export const FETCH_ITEMS_FAILURE = 'FETCH_ITEMS_FAILURE';
 // Actions
 // ------------------------------------
 function requestItems () {
-  console.log('request');
   return {
     didInvalidate: false,
     type: FETCH_ITEMS_REQUEST,
@@ -45,10 +44,16 @@ export const actions = {
   fetchItems
 };
 // ------------------------------------
-// Action Handlers
+// Action Handlers - Возвращает новое состояние
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [FETCH_ITEMS_SUCCESS]: (state, action) => action.data,
+  [FETCH_ITEMS_SUCCESS]: (state, action) => {
+    return {
+      isFetching: false,
+      didInvalidate: false,
+      items: action.data
+    };
+  },
   [FETCH_ITEMS_FAILURE]: (stat, action) => action.data
 };
 
