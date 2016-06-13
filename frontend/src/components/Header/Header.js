@@ -4,9 +4,7 @@ import { Button } from 'react-biz/lib/button';
 import AppBar from 'react-biz/lib/app_bar';
 import LoadingBar from '../Bar/LoadingBar';
 
-class Header extends React.Component {
-  render () {
-    return (
+export const Header = () =>  (
       <div>
         <h1>Заявки</h1>
         <AppBar flat>
@@ -15,8 +13,7 @@ class Header extends React.Component {
           </Link>
         </AppBar>
         <LoadingBar />
-      </div>);
-  }
-}
+      </div>
+);
 
 export default Header;
