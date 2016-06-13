@@ -11,7 +11,7 @@ const mapActionCreators = {
 };
 
 const mapStateToProps = (state) => ({
-  data: state.data
+  data: state.requests
 });
 
 export default connect(mapStateToProps, mapActionCreators)(ListView);
