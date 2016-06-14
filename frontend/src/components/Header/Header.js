@@ -16,7 +16,7 @@ export default class Header extends Component {
   toList = (e) => {
     e.preventDefault();
     this.context.router.push('/list');
-  }
+  };
 
   render () {
     return (

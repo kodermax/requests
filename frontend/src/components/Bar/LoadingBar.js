@@ -63,7 +63,7 @@ export class LoadingBar extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (this.props.loading > 0 && nextProps.loading === 0) {
-      setTimeout(() => { this.hideBar(); }, 1000);
+      setTimeout(() => { this.hideBar(); }, 1000, true);
     } else {
       this.showBar();
     }
@@ -104,7 +104,7 @@ export class LoadingBar extends Component {
 
   render () {
     const style = {};
-    style.display = this.state.active ? 'block' : 'none';
+    style.display = this.state.active === true ? 'block' : 'none';
     return (
       <div style={Object.assign({}, styles.root, style)}>
         <div style={styles.bar}>
