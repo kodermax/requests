@@ -13,7 +13,7 @@ export const HomeView = () => (
           <h4 className={cx('w-iconbox-title')}>АХД</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>
-              <li><a href=''>Заявка на командировку</a></li>
+              <li><a href='/create/trip'>Заявка на командировку</a></li>
               <li>Канцелярия</li>
               <li>Курьер</li>
               <li>Организация рабочего места</li>
