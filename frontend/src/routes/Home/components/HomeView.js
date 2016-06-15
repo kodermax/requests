@@ -13,16 +13,16 @@ export const HomeView = () => (
           <h4 className={cx('w-iconbox-title')}>АХД</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>
-              <li><a href=''>Канцелярия</a></li>
-              <li><a href=''>Курьер</a></li>
-              <li><a href=''>Организация рабочего места</a></li>
-              <li><a href=''>Закупка мебели</a></li>
-              <li><a href=''>Закупка ТМЦ</a></li>
-              <li><a href=''>Визитки</a></li>
-              <li><a href=''>Уборка помещения</a></li>
-              <li><a href=''>Цветы</a></li>
-              <li><a href=''>Оформить командировку</a></li>
-              <li><a href=''>Заявка на ремонт</a></li>
+              <li><a href=''>Заявка на командировку</a></li>
+              <li>Канцелярия</li>
+              <li>Курьер</li>
+              <li>Организация рабочего места</li>
+              <li>Закупка мебели</li>
+              <li>Закупка ТМЦ</li>
+              <li>Визитки</li>
+              <li>Уборка помещения</li>
+              <li>Цветы</li>
+              <li>Заявка на ремонт</li>
             </ul>
           </div>
         </div>
@@ -37,9 +37,9 @@ export const HomeView = () => (
           <h4 className={cx('w-iconbox-title')}>ИТ</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>
-              <li><a href=''>ИТ</a></li>
-              <li><a href=''>Портал</a></li>
-              <li><a href=''>1С</a></li>
+              <li>ИТ</li>
+              <li>Портал</li>
+              <li>1С</li>
             </ul>
           </div>
         </div>
@@ -54,9 +54,9 @@ export const HomeView = () => (
           <h4 className={cx('w-iconbox-title')}>Бухгалтерия</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>
-              <li><a href=''>Справка 2-НДФЛ</a></li>
-              <li><a href=''>Справка о доходах</a></li>
-              <li><a href=''>Расчетный лист</a></li>
+              <li>Справка 2-НДФЛ</li>
+              <li>Справка о доходах</li>
+              <li>Расчетный лист</li>
             </ul>
           </div>
         </div>
@@ -73,10 +73,10 @@ export const HomeView = () => (
           <h4 className={cx('w-iconbox-title')}>HR</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>
-              <li><a href=''>Отпуск</a></li>
-              <li><a href=''>Увольнение</a></li>
-              <li><a href=''>Мат. помощь</a></li>
-              <li><a href=''>Мобильная связь</a></li>
+              <li>Отпуск</li>
+              <li>Увольнение</li>
+              <li>Мат. помощь</li>
+              <li>Мобильная связь</li>
             </ul>
           </div>
         </div>
@@ -87,7 +87,7 @@ export const HomeView = () => (
           <h4 className={cx('w-iconbox-title')}>Юридический отдел</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>
-              <li><a href=''>Консультация</a></li>
+              <li>Консультация</li>
             </ul>
           </div>
         </div>
@@ -98,7 +98,7 @@ export const HomeView = () => (
           <h4 className={cx('w-iconbox-title')}>Отдел закупок</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>
-              <li><a href=''>Заявка на закупку</a></li>
+              <li>Заявка на закупку</li>
             </ul>
           </div>
         </div>
