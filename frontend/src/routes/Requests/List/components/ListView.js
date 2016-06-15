@@ -58,7 +58,7 @@ export default class ListView extends Component {
   state = { selected: [], items: users };
   static propTypes = {
     fetchItems: PropTypes.func.isRequired,
-    items: PropTypes.array
+    data: PropTypes.object.isRequired
   };
   componentDidMount = () => {
     this.props.fetchItems();
@@ -69,14 +69,25 @@ export default class ListView extends Component {
   };
 
   render () {
-    console.log(this.props.data.items);
+    const source = this.props.data.items ? this.props.data.items.map((item) => {
+      return ({
+        id: item.ticketId,
+        title: item.title,
+        createdBy: item.creator.name + ' ' + item.creator.surname,
+        changedBy: item.changer.name + ' ' + item.changer.surname,
+        messages: item.messages.length,
+        category: item.department.title,
+        status: item.status.title,
+        responsible: item.responsible.title
+      });
+    }) : [];
     return (
       <Table
         model={requestColumns}
         onSelect={this.handleSelect}
         selected={this.state.selected}
         selectable={false}
-        source={this.state.items}
+        source={source}
       />
     );
   }
