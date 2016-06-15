@@ -2,10 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import transitions from '../styles/transitions';
 
-export const UPDATE_TIME = 200;
-export const MAX_PROGRESS = 90;
-export const PROGRESS_INCREASE = 5;
-
 const styles = {
   root: {
     position: 'relative',
