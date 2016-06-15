@@ -43,19 +43,7 @@ const requestColumns = {
   }
 };
 
-const users = [
-  {
-    id: '213', title: 'Заявка на канц. товары', createdBy: 'Максим', changedBy: 'Юрий', messages: 3,
-    category: 'АХД - Канцтовары', status: 'В Работе'
-  },
-  {
-    id: '213', title: 'Заявка на цветы', createdBy: ' Максим', changedBy: 'Юрий', messages: 3,
-    category: 'АХД - Канцтовары', status: 'В Работе'
-  }
-];
-
 export default class ListView extends Component {
-  state = { selected: [], items: users };
   static propTypes = {
     fetchItems: PropTypes.func.isRequired,
     data: PropTypes.object.isRequired
@@ -84,8 +72,6 @@ export default class ListView extends Component {
     return (
       <Table
         model={requestColumns}
-        onSelect={this.handleSelect}
-        selected={this.state.selected}
         selectable={false}
         source={source}
       />
