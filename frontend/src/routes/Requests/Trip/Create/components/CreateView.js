@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-export default class TripView extends Component {
+export default class CreateView extends Component {
   render () {
     return (
       <div>Create</div>
