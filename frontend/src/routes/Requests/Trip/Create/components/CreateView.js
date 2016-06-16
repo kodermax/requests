@@ -32,25 +32,25 @@ export default class CreateView extends Component {
           onChange={this.handleChange.bind(this, 'country')} maxLength={16}
         />
         <Input type='text' label='Город' name='city' value={this.state.city}
-           onChange={this.handleChange.bind(this, 'city')} maxLength={50}
+          onChange={this.handleChange.bind(this, 'city')} maxLength={50}
         />
         <Input type='text' label='Организация' name='company' value={this.state.company}
-           onChange={this.handleChange.bind(this, 'company')} maxLength={100}
+          onChange={this.handleChange.bind(this, 'company')} maxLength={100}
         />
         <Input type='text' label='Цель' name='target' value={this.state.target}
-           onChange={this.handleChange.bind(this, 'target')} multiline
+          onChange={this.handleChange.bind(this, 'target')} multiline
         />
         <Input type='text' label='Проезд Туда' name='tripThere' value={this.state.tripThere}
-           onChange={this.handleChange.bind(this, 'tripThere')} multiline
+          onChange={this.handleChange.bind(this, 'tripThere')} multiline
         />
         <Input type='text' label='Проезд Обратно' name='tripBack' value={this.state.tripBack}
-           onChange={this.handleChange.bind(this, 'tripBack')} multiline
+          onChange={this.handleChange.bind(this, 'tripBack')} multiline
         />
         <Input type='text' label='Суточные' name='daily' value={this.state.daily}
-           onChange={this.handleChange.bind(this, 'daily')} multiline
+          onChange={this.handleChange.bind(this, 'daily')} multiline
         />
         <Input type='text' label='Прочие расходы' name='otherExpenses' value={this.state.otherExpenses}
-           onChange={this.handleChange.bind(this, 'otherExpenses')} multiline
+          onChange={this.handleChange.bind(this, 'otherExpenses')} multiline
         />
         <Button label='Отправить' raised primary />
       </div>
