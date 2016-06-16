@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import classes from './HomeView.scss';
+import { Link } from 'react-router';
 
 const cx = classNames.bind(classes);
 
@@ -13,7 +14,7 @@ export const HomeView = () => (
           <h4 className={cx('w-iconbox-title')}>АХД</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>
-              <li><a href='/trip/create'>Заявка на командировку</a></li>
+              <li><Link to='/trip/create'>Заявка на командировку</Link></li>
               <li>Канцелярия</li>
               <li>Курьер</li>
               <li>Организация рабочего места</li>

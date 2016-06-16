@@ -12,7 +12,7 @@ export const createRoutes = (store) => ({
   component: CoreLayout,
   indexRoute: Home,
   childRoutes: [
-    CreateTrip(),
+    CreateTrip(store),
     RequestsList(store)
   ]
 });

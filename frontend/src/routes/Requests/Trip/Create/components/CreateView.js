@@ -3,7 +3,7 @@ import Input from 'react-biz/lib/input';
 import DatePicker from 'react-biz/lib/date_picker';
 import { Button } from 'react-biz/lib/button';
 
-class CreateView extends Component {
+export default class CreateView extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -44,7 +44,7 @@ class CreateView extends Component {
            onChange={this.handleChange.bind(this, 'tripThere')} multiline
         />
         <Input type='text' label='Проезд Обратно' name='tripBack' value={this.state.tripBack}
-               onChange={this.handleChange.bind(this, 'tripBack')} multiline
+           onChange={this.handleChange.bind(this, 'tripBack')} multiline
         />
         <Input type='text' label='Суточные' name='daily' value={this.state.daily}
            onChange={this.handleChange.bind(this, 'daily')} multiline
@@ -57,4 +57,3 @@ class CreateView extends Component {
     );
   }
 }
-export default CreateView;
