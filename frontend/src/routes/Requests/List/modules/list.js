@@ -24,6 +24,7 @@ function receiveItems (result) {
   };
 }
 function invalidItems (error) {
+  console.log(error);
   return {
     data: error,
     isFetching: false,
