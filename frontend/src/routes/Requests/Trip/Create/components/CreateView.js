@@ -23,6 +23,7 @@ export default class CreateView extends Component {
     }
   };
   static propTypes = {
+    addItem: PropTypes.func.isRequired,
     fields: PropTypes.object.isRequired
   };
   constructor (props) {
@@ -34,6 +35,7 @@ export default class CreateView extends Component {
       this.changeField[props.fields[key].name] = this.handleChangeField.bind(this, props.fields[key].name);
     });
     this.btnCancel = this.handleCancel.bind(this);
+    this.btnSubmit = this.handleSubmit.bind(this);
     this.state = fields;
   }
 
@@ -43,6 +45,10 @@ export default class CreateView extends Component {
   handleCancel = (e) => {
     e.preventDefault();
     this.context.router.push('/');
+  };
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.addItem(this.state);
   };
 
   render () {
@@ -74,7 +80,7 @@ export default class CreateView extends Component {
           onChange={this.changeField['otherExpenses']} multiline
         />
         <div className={theme.actions}>
-          <Button label='Отправить' raised primary />
+          <Button label='Отправить' raised primary onMouseUp={this.btnSubmit} />
           <Button label='Отменить' raised onMouseUp={this.btnCancel} />
         </div>
       </div>

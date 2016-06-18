@@ -14,7 +14,7 @@ export const HomeView = () => (
           <h4 className={cx('w-iconbox-title')}>АХД</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>
-              <li><Link to='/trip/create'>Заявка на командировку</Link></li>
+              <li><Link to='/trip/new'>Заявка на командировку</Link></li>
               <li>Канцелярия</li>
               <li>Курьер</li>
               <li>Организация рабочего места</li>

@@ -92,11 +92,9 @@ export class LoadingBar extends Component {
   }
 
   showBar () {
-    console.log('test');
     this.setState({ active: true });
   }
   hideBar () {
-    console.log('test');
     this.setState({ active: false });
   }
 
