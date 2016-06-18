@@ -25,8 +25,14 @@ class Request {
   async create() {
     await this.parseRequest();
     const result = await this.model().create(this.request);
-    this.respond.status = 201;
-    this.respond.body = { id: result.changes[0].new_val.id };
+    if (result.errors >= 1) {
+      this.respond.status = 200;
+      this.respond.body = { error: true, errorMessage: 'Ошибка при добавлении'};
+    }
+    else if (result.changes[0].new_val) {
+      this.respond.status = 201;
+      this.respond.body = { id: result.changes[0].new_val.id };
+    }
   }
 
   response() {
