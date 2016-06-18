@@ -25,7 +25,7 @@ class Request {
   async create() {
     await this.parseRequest();
     const result = await this.model().create(this.request);
-    this.respond.status = 200;
+    this.respond.status = 201;
     this.respond.body = { id: result.changes[0].new_val.id };
   }
 
