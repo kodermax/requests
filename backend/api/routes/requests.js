@@ -5,4 +5,7 @@ export default (router) => {
   router.get('/requests', async(ctx, next) => {
     await chain(new RequestsController(ctx, next), ['all', 'response']);
   });
+  router.post('/requests', async(ctx, next) => {
+    await chain(new RequestsController(ctx, next), ['create', 'response']);
+  });
 };

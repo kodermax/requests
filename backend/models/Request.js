@@ -11,6 +11,10 @@ class Request {
       .then(cursor => cursor.toArray())
       .then(result => JSON.stringify(result));
   }
+
+  async create(request) {
+    return await r.table('requests').insert(request, { returnChanges: true }).run(this.db);
+  }
 }
 
 module.exports = Request;

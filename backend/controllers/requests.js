@@ -5,7 +5,7 @@ class Request {
     this.db = ctx.db || null;
     this.ctx = ctx;
     this.next = next;
-
+    this.request = {};
     this.respond = {};
     this.respond.status = null;
     this.respond.body = null;
@@ -18,6 +18,15 @@ class Request {
   async all() {
     this.respond.body = await this.model().all();
     this.respond.status = 200;
+  }
+  async parseRequest() {
+    this.request = (this.ctx.request && this.ctx.request.body) ? this.ctx.request.body : '';
+  }
+  async create() {
+    await this.parseRequest();
+    const result = await this.model().create(this.request);
+    this.respond.status = 200;
+    this.respond.body = { id: result.changes[0].new_val.id };
   }
 
   response() {
