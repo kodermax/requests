@@ -27,12 +27,17 @@ class Request {
     const result = await this.model().create(this.request);
     if (result.errors >= 1) {
       this.respond.status = 200;
-      this.respond.body = { error: true, errorMessage: 'Ошибка при добавлении'};
+      this.respond.body = { error: true, errorMessage: 'Ошибка при добавлении' };
     }
     else if (result.changes[0].new_val) {
       this.respond.status = 201;
       this.respond.body = { id: result.changes[0].new_val.id };
     }
+  }
+  async fields() {
+    const result = await this.model().fields(this.ctx.params.code);
+    this.respond.status = 200;
+    this.respond.body = result;
   }
 
   response() {

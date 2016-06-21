@@ -8,4 +8,7 @@ export default (router) => {
   router.post('/requests', async(ctx, next) => {
     await chain(new RequestsController(ctx, next), ['create', 'response']);
   });
+  router.get('/requests/categories/:code/fields', async(ctx, next) => {
+    await chain(new RequestsController(ctx, next), ['fields', 'response']);
+  });
 };
