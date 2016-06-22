@@ -7,10 +7,12 @@ export default (store) => ({
     /* Разделяем код с помощью webpack */
     require.ensure([], (require) => {
       const trip = require('./containers/CreateContainer').default;
-      const reducer = require('../../../../modules/add').default;
+      const reducerAdd = require('../../../../modules/add').default;
+      const reducerFields = require('../../../../modules/fields').default;
 
       // Добавляем редьюсер в зранилище с ключом requests
-      injectReducer(store, { key: 'trip', reducer });
+      injectReducer(store, { key: 'trip', reducer: reducerAdd });
+      injectReducer(store, { key: 'fields', reducer: reducerFields });
       cb(null, trip);
     }, 'trip');
   }

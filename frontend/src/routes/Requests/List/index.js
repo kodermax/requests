@@ -9,7 +9,7 @@ export default (store) => ({
       const list = require('./containers/ListContainer').default;
       const reducer = require('./modules/list').default;
 
-      // Добавляем редьюсер в зранилище с ключом requests
+      // Добавляем редьюсер в хранилище с ключом requests
       injectReducer(store, { key: 'requests', reducer });
       cb(null, list);
     }, 'list');

@@ -1,48 +1,48 @@
-export const ADD_ITEM_REQUEST = 'ADD_ITEM_REQUEST';
-export const ADD_ITEM_SUCCESS = 'ADD_ITEM_SUCCESS';
-export const ADD_ITEM_FAILURE = 'ADD_ITEM_FAILURE';
+export const GET_FIELDS_REQUEST = 'GET_FIELDS_REQUEST';
+export const GET_FIELDS_SUCCESS = 'GET_FIELDS_SUCCESS';
+export const GET_FIELDS_FAILURE = 'GET_FIELDS_FAILURE';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-function requestAddItem () {
+function requestGetFields () {
   return {
     error: false,
-    type: ADD_ITEM_REQUEST,
+    type: GET_FIELDS_REQUEST,
     isFetching: true
   };
 }
-function receiveAddItem (result) {
+function receiveGetFields (result) {
   return {
-    data: result.id,
+    data: result,
     isFetching: false,
     error: false,
-    type: ADD_ITEM_SUCCESS
+    type: GET_FIELDS_SUCCESS
   };
 }
-function invalidAddItem (error) {
+function invalidGetFields (error) {
   return {
     isFetching: false,
     error: true,
     errorMessage: error,
-    type: ADD_ITEM_FAILURE
+    type: GET_FIELDS_FAILURE
   };
 }
 
-export const addItem = (data) => {
+export const getFields = (code) => {
   return (dispatch, getState) => {
-    dispatch(requestAddItem());
-    return fetch('http://dev.pharm.local:3001/api/requests',
+    dispatch(requestGetFields());
+    return fetch(`http://dev.pharm.local:3001/api/requests/categories/${code}/fields`,
       {
-        method: 'POST',
+        method: 'GET',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         }
       })
       .then(response => response.json())
-      .then(json => dispatch(receiveAddItem(json)))
-      .catch(error => dispatch(invalidAddItem(error)));
+      .then(json => dispatch(receiveGetFields(json)))
+      .catch(error => dispatch(invalidGetFields(error)));
   };
 };
 
@@ -50,14 +50,14 @@ export const addItem = (data) => {
 // Action Handlers - Возвращает новое состояние
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [ADD_ITEM_SUCCESS]: (state, action) => {
+  [GET_FIELDS_SUCCESS]: (state, action) => {
     return {
       isFetching: false,
       error: false,
-      id: action.id
+      data: action.data
     };
   },
-  [ADD_ITEM_FAILURE]: (state, action) => {
+  [GET_FIELDS_FAILURE]: (state, action) => {
     return {
       isFetching: false,
       error: true,
@@ -66,7 +66,7 @@ const ACTION_HANDLERS = {
   }
 };
 export const actions = {
-  addItem
+  getFields
 };
 // Reducer
 // ------------------------------------
@@ -75,7 +75,7 @@ const initialState = {
   error: false,
   data: {}
 };
-export default function addReducer (state = initialState, action) {
+export default function fieldsReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];
   return handler ? handler(state, action) : state;
 }
