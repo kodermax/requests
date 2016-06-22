@@ -73,7 +73,7 @@ export const actions = {
 const initialState = {
   isFetching: false,
   error: false,
-  data: {}
+  data: []
 };
 export default function fieldsReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];

@@ -11,7 +11,7 @@ export default class CreateView extends Component {
   static propTypes = {
     addItem: PropTypes.func.isRequired,
     getFields: PropTypes.func.isRequired,
-    fields: PropTypes.object.isRequired
+    fields: PropTypes.array.isRequired
   };
   constructor (props) {
     super(props);
@@ -22,11 +22,10 @@ export default class CreateView extends Component {
   }
   componentWillReceiveProps (nextProps) {
     let fields = {};
-    Object.keys(nextProps.fields).map((key) => {
-      fields[nextProps.fields[key].code] = '';
-      this.changeField[nextProps.fields[key].code] = this.handleChangeField.bind(this, nextProps.fields[key].code);
+    nextProps.fields.map((item) => {
+      fields[item.code] = '';
+      this.changeField[item.code] = this.handleChangeField.bind(this, item.code);
     });
-    console.log(this.changeField);
     this.setState(fields);
   }
   getFields = () => {
@@ -46,10 +45,9 @@ export default class CreateView extends Component {
 
   render () {
     const { fields } = this.props;
-
     return (
       <div>
-        {fields && Object.keys(fields).length !== 0 &&
+        {fields && fields.length !== 0 &&
           <div>
             <DatePicker onChange={this.changeField['tripDate']} label='Дата командировки' value={this.state.tripDate} />
             <Input type='text' label='Страна' name='country' value={this.state.country}
@@ -64,8 +62,8 @@ export default class CreateView extends Component {
             <Input type='text' label='Цель' name='target' value={this.state.target}
               onChange={this.changeField['target']} multiline
             />
-            <Input type='text' label='Проезд Туда' name='tripThere' value={this.state.tripThere}
-              onChange={this.changeField['tripThere']} multiline
+            <Input type='text' label='Проезд Туда' name='tripTo' value={this.state.tripThere}
+              onChange={this.changeField['tripTo']} multiline
             />
             <Input type='text' label='Проезд Обратно' name='tripBack' value={this.state.tripBack}
               onChange={this.changeField['tripBack']} multiline

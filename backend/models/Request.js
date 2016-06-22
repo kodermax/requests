@@ -27,8 +27,8 @@ class Request {
         },
       })
       .run(this.db)
-      .then(cursor => cursor.toArray())
-    return result[0].items[0].fields[0];
+      .then(cursor => cursor.toArray());
+    return result[0].items[0].fields;
   }
 }
 
