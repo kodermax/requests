@@ -16,17 +16,19 @@ export default class CreateView extends Component {
   constructor (props) {
     super(props);
     this.changeField = {};
+    this.fields = {};
     this.getFields();
     this.btnCancel = this.handleCancel.bind(this);
     this.btnSubmit = this.handleSubmit.bind(this);
   }
   componentWillReceiveProps (nextProps) {
-    let fields = {};
+    let tmpFields = {};
     nextProps.fields.map((item) => {
-      fields[item.code] = '';
+      tmpFields[item.code] = '';
       this.changeField[item.code] = this.handleChangeField.bind(this, item.code);
+      this.fields[item.code] = item;
     });
-    this.setState(fields);
+    this.setState(tmpFields);
   }
   getFields = () => {
     this.props.getFields('trip');
@@ -49,29 +51,29 @@ export default class CreateView extends Component {
       <div>
         {fields && fields.length !== 0 &&
           <div>
-            <DatePicker onChange={this.changeField['tripDate']} label='Дата командировки' value={this.state.tripDate} />
-            <Input type='text' label='Страна' name='country' value={this.state.country}
+            <DatePicker onChange={this.changeField['tripDate']} label={this.fields['tripDate'].title} value={this.state.tripDate} />
+            <Input type='text' label={this.fields['country'].title} name='country' value={this.state.country}
               onChange={this.changeField['country']} maxLength={16}
             />
-            <Input type='text' label='Город' name='city' value={this.state.city}
+            <Input type='text' label={this.fields['city'].title} name='city' value={this.state.city}
               onChange={this.changeField['city']} maxLength={50}
             />
-            <Input type='text' label='Организация' name='company' value={this.state.company}
+            <Input type='text' label={this.fields['company'].title} name='company' value={this.state.company}
               onChange={this.changeField['company']} maxLength={100}
             />
-            <Input type='text' label='Цель' name='target' value={this.state.target}
+            <Input type='text' label={this.fields['target'].title} name='target' value={this.state.target}
               onChange={this.changeField['target']} multiline
             />
-            <Input type='text' label='Проезд Туда' name='tripTo' value={this.state.tripThere}
+            <Input type='text' label={this.fields['tripTo'].title} name='tripTo' value={this.state.tripThere}
               onChange={this.changeField['tripTo']} multiline
             />
-            <Input type='text' label='Проезд Обратно' name='tripBack' value={this.state.tripBack}
+            <Input type='text' label={this.fields['tripBack'].title} name='tripBack' value={this.state.tripBack}
               onChange={this.changeField['tripBack']} multiline
             />
-            <Input type='text' label='Суточные' name='daily' value={this.state.daily}
+            <Input type='text' label={this.fields['daily'].title} name='daily' value={this.state.daily}
               onChange={this.changeField['daily']} multiline
             />
-            <Input type='text' label='Прочие расходы' name='otherExpenses' value={this.state.otherExpenses}
+            <Input type='text' label={this.fields['otherExpenses'].title} name='otherExpenses' value={this.state.otherExpenses}
               onChange={this.changeField['otherExpenses']} multiline
             />
             <div className={theme.actions}>
