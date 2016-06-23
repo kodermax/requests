@@ -38,8 +38,10 @@ export const addItem = (data) => {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
-        }
-      })
+        },
+        body: JSON.stringify(data)
+      }
+      )
       .then(response => response.json())
       .then(json => dispatch(receiveAddItem(json)))
       .catch(error => dispatch(invalidAddItem(error)));

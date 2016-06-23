@@ -79,8 +79,8 @@ export default class CreateView extends Component {
             <Input type='text' label={this.fields['daily'].title} name='daily' value={this.state.daily}
               onChange={this.changeField['daily']} multiline
             />
-            <Input type='text' label={this.fields['otherExpenses'].title} name='otherExpenses' value={this.state.otherExpenses}
-              onChange={this.changeField['otherExpenses']} multiline
+            <Input type='text' label={this.fields['otherExpenses'].title} name='otherExpenses'
+              value={this.state.otherExpenses} onChange={this.changeField['otherExpenses']} multiline
             />
             <div className={theme.actions}>
               <Button label='Отправить' raised primary onMouseUp={this.btnSubmit} />
