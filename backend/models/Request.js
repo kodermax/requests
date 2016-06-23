@@ -1,7 +1,8 @@
-const r = require('rethinkdb');
+
+import r from 'rethinkdb';
 
 class Request {
-  constructor (db) {
+  constructor(db) {
     this.db = db || null;
     this.request = {};
   }
@@ -13,6 +14,8 @@ class Request {
   }
 
   async create(request) {
+    request.created = new Date().toJSON();
+    request.changed = new Date().toJSON();
     return await r.table('requests').insert(request, { returnChanges: true }).run(this.db);
   }
 
