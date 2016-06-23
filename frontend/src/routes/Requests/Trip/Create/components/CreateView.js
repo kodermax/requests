@@ -42,7 +42,11 @@ export default class CreateView extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addItem(this.state);
+    let data = {
+      fields: this.state,
+      title: 'Заявка на командировку'
+    };
+    this.props.addItem(data);
   };
 
   render () {
@@ -51,7 +55,9 @@ export default class CreateView extends Component {
       <div>
         {fields && fields.length !== 0 &&
           <div>
-            <DatePicker onChange={this.changeField['tripDate']} label={this.fields['tripDate'].title} value={this.state.tripDate} />
+            <DatePicker onChange={this.changeField['tripDate']} label={this.fields['tripDate'].title}
+              value={this.state.tripDate}
+            />
             <Input type='text' label={this.fields['country'].title} name='country' value={this.state.country}
               onChange={this.changeField['country']} maxLength={16}
             />
@@ -64,7 +70,7 @@ export default class CreateView extends Component {
             <Input type='text' label={this.fields['target'].title} name='target' value={this.state.target}
               onChange={this.changeField['target']} multiline
             />
-            <Input type='text' label={this.fields['tripTo'].title} name='tripTo' value={this.state.tripThere}
+            <Input type='text' label={this.fields['tripTo'].title} name='tripTo' value={this.state.tripTo}
               onChange={this.changeField['tripTo']} multiline
             />
             <Input type='text' label={this.fields['tripBack'].title} name='tripBack' value={this.state.tripBack}
