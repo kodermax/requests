@@ -1,0 +1,7 @@
+frontend/blueprints/**/files/**
+frontend/coverage/**
+node_modules/**
+frontend/dist/**
+*.spec.js
+frontend/src/index.html
+
