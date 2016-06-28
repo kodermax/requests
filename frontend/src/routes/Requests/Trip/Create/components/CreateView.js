@@ -15,24 +15,45 @@ export default class CreateView extends Component {
   };
   constructor (props) {
     super(props);
-    this.changeField = {};
-    this.fields = {};
-    this.getFields();
     this.btnCancel = this.handleCancel.bind(this);
     this.btnSubmit = this.handleSubmit.bind(this);
+    if (this.props.fields.length === 0) {
+      this.props.getFields('trip');
+    }
+    else {
+      let tmpFields = {};
+      this.fields = {};
+      this.changeField = {};
+      props.fields.map((item) => {
+        tmpFields[item.code] = '';
+        this.changeField[item.code] = this.handleChangeField.bind(this, item.code);
+        this.fields[item.code] = item;
+      });
+      this.state = tmpFields;
+    }
+
+  }
+  componentDidMount () {
+    console.log('didMount');
   }
   componentWillReceiveProps (nextProps) {
-    let tmpFields = {};
-    nextProps.fields.map((item) => {
-      tmpFields[item.code] = '';
-      this.changeField[item.code] = this.handleChangeField.bind(this, item.code);
-      this.fields[item.code] = item;
-    });
-    this.setState(tmpFields);
+    console.log('willreceive');
+    if (nextProps.fields !== this.props.fields) {
+      let tmpFields = {};
+      this.fields = {};
+      this.changeField = {};
+      nextProps.fields.map((item) => {
+        tmpFields[item.code] = '';
+        this.changeField[item.code] = this.handleChangeField.bind(this, item.code);
+        this.fields[item.code] = item;
+      });
+      this.setState(tmpFields);
+    }
   }
-  getFields = () => {
-    this.props.getFields('trip');
-  };
+  shouldComponentUpdate() {
+    console.log('compinentUpdate');
+    return true;
+  }
   handleChangeField = (item, value) => {
     this.setState({ ...this.state, [item]: value });
   };
@@ -51,6 +72,7 @@ export default class CreateView extends Component {
 
   render () {
     const { fields } = this.props;
+    console.log(this);
     return (
       <div>
         {fields && fields.length !== 0 &&

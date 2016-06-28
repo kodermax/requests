@@ -6,6 +6,8 @@ import {syncHistoryWithStore} from 'react-router-redux';
 import createStore from './store/createStore';
 import AppContainer from './containers/AppContainer';
 
+const userToken = document.getElementById('user_token').value;
+localStorage.setItem('userToken', userToken);
 // ========================================================
 // Browser History Setup
 // ========================================================
