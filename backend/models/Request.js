@@ -1,5 +1,4 @@
-
-import r from 'rethinkdb';
+import mongoose from 'mongoose';
 
 class Request {
   constructor(db) {

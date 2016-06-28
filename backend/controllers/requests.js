@@ -1,6 +1,6 @@
 const RequestModel = require('../models/Request');
 
-class Request {
+class Requests {
   constructor(ctx, next) {
     this.db = ctx.db || null;
     this.ctx = ctx;
@@ -49,4 +49,4 @@ class Request {
     this.ctx.type = 'application/json';
   }
 }
-module.exports = Request;
+module.exports = Requests;
