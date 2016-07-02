@@ -5,7 +5,7 @@ export async function connectDatabase() {
     mongoose.connect('mongodb://localhost/portal');
     mongoose.connection.on('error', console.error);
     mongoose.connection.on('connected', () =>
-      console.log('mongo connection open')
+      console.log('mongodb connection open')
     );
     return mongoose.connection;
   } catch (err) {

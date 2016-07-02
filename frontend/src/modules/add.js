@@ -32,11 +32,13 @@ function invalidAddItem (error) {
 export const addItem = (data) => {
   return (dispatch, getState) => {
     dispatch(requestAddItem());
+    let token = localStorage.getItem('userToken') || null;
     return fetch('http://dev.pharm.local:3001/api/requests',
       {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)

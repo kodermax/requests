@@ -8,7 +8,6 @@ function jwtValidate(options) {
       const authComponents = ctx.header.authorization.split(' ');
       if (authComponents.length === 2 && authComponents[0] === 'Bearer') {
         const user = await JWT.verify(authComponents[1], options.secret, options.jwtOpts);
-        console.log(user);
       }
     }
     return next();

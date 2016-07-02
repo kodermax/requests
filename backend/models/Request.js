@@ -1,12 +1,14 @@
 import mongoose from 'mongoose';
-import User from './User';
+import { UserSchema } from './User';
 const Schema = mongoose.Schema;
 
-const requestSchema = new Schema({
-  author: User,
-  changed: Date,
-  created: Date,
+const RequestSchema = new Schema({
+  author: UserSchema,
   fields: Schema.Types.Mixed,
   title: String,
-});
-export default mongoose.model('Request', requestSchema);
+},
+  {
+    timestamps: true,
+  }
+);
+export default mongoose.model('Request', RequestSchema);

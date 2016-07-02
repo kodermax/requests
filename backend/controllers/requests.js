@@ -1,4 +1,4 @@
-const RequestModel = require('../models/Request');
+import Request from '../models/Request';
 
 class Requests {
   constructor(ctx, next) {
@@ -11,10 +11,6 @@ class Requests {
     this.respond.body = null;
   }
 
-  model() {
-    return new RequestModel(this.db);
-  }
-
   async all() {
     this.respond.body = await this.model().all();
     this.respond.status = 200;
@@ -24,14 +20,14 @@ class Requests {
   }
   async create() {
     await this.parseRequest();
-    const result = await this.model().create(this.request);
-    if (result.errors >= 1) {
-      this.respond.status = 200;
-      this.respond.body = { error: true, errorMessage: 'Ошибка при добавлении' };
-    }
-    else if (result.changes[0].new_val) {
+    const request = new Request(this.request);
+    const result = await request.save();
+    if(result) {
       this.respond.status = 201;
-      this.respond.body = { id: result.changes[0].new_val.id };
+      this.respond.body = { id: result.id };
+    } else {
+      this.respond.status = 200;
+      this.respond.body = { message: 'Ошибка при добавлении заявки' };
     }
   }
   async fields() {

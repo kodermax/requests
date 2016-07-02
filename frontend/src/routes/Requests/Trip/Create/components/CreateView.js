@@ -19,8 +19,7 @@ export default class CreateView extends Component {
     this.btnSubmit = this.handleSubmit.bind(this);
     if (this.props.fields.length === 0) {
       this.props.getFields('trip');
-    }
-    else {
+    } else {
       let tmpFields = {};
       this.fields = {};
       this.changeField = {};
@@ -31,13 +30,10 @@ export default class CreateView extends Component {
       });
       this.state = tmpFields;
     }
-
   }
   componentDidMount () {
-    console.log('didMount');
   }
   componentWillReceiveProps (nextProps) {
-    console.log('willreceive');
     if (nextProps.fields !== this.props.fields) {
       let tmpFields = {};
       this.fields = {};
@@ -50,8 +46,7 @@ export default class CreateView extends Component {
       this.setState(tmpFields);
     }
   }
-  shouldComponentUpdate() {
-    console.log('compinentUpdate');
+  shouldComponentUpdate () {
     return true;
   }
   handleChangeField = (item, value) => {
@@ -72,7 +67,6 @@ export default class CreateView extends Component {
 
   render () {
     const { fields } = this.props;
-    console.log(this);
     return (
       <div>
         {fields && fields.length !== 0 &&
