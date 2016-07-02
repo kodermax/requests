@@ -35,7 +35,15 @@ function invalidItems (error) {
 export const fetchItems = () => {
   return (dispatch, getState) => {
     dispatch(requestItems());
-    return fetch('http://dev.pharm.local:3001/api/requests')
+    let token = localStorage.getItem('userToken') || null;
+    return fetch('http://dev.pharm.local:3001/api/requests',{
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+    })
       .then(response => response.json())
       .then(json => dispatch(receiveItems(json)))
       .catch(error => dispatch(invalidItems(error)));

@@ -18,7 +18,7 @@ export default class CreateView extends Component {
     this.btnCancel = this.handleCancel.bind(this);
     this.btnSubmit = this.handleSubmit.bind(this);
     if (this.props.fields.length === 0) {
-      this.props.getFields('trip');
+     // this.props.getFields('trip');
     } else {
       let tmpFields = {};
       this.fields = {};

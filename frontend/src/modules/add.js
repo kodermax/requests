@@ -36,6 +36,7 @@ export const addItem = (data) => {
     return fetch('http://dev.pharm.local:3001/api/requests',
       {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Accept': 'application/json',
           'Authorization': `Bearer ${token}`,

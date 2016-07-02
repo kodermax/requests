@@ -12,7 +12,13 @@ class Requests {
   }
 
   async all() {
-    this.respond.body = await this.model().all();
+    const result = await Request.find();
+    if(result) {
+      this.respond.body = result;
+    }
+    else {
+      this.respond.body = { message: 'Ошибка' };
+    }
     this.respond.status = 200;
   }
   async parseRequest() {
@@ -22,7 +28,7 @@ class Requests {
     await this.parseRequest();
     const request = new Request(this.request);
     const result = await request.save();
-    if(result) {
+    if (result) {
       this.respond.status = 201;
       this.respond.body = { id: result.id };
     } else {

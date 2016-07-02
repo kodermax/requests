@@ -37,6 +37,7 @@ export const getFields = (code) => {
     return fetch(`http://dev.pharm.local:3001/api/requests/categories/${code}/fields`,
       {
         method: 'GET',
+        mode: 'cors',
         headers: {
           'Accept': 'application/json',
           'Authorization': `Bearer ${token}`,
