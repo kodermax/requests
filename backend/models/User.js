@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const UserSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   birthday: {
     type: String,
   },
@@ -35,9 +35,9 @@ const UserSchema = new mongoose.Schema({
     },
   }
 );
-UserSchema.virtual('fullName').get(function getFullName() {
+userSchema.virtual('fullName').get(function getFullName() {
   return `${this.lastName} ${this.name} ${this.secondName}`;
 });
 
-export default mongoose.model('User', UserSchema);
-export { UserSchema };
+export default mongoose.model('User', userSchema);
+export { userSchema };

@@ -1,14 +1,19 @@
 import mongoose from 'mongoose';
-import { UserSchema } from './User';
-const Schema = mongoose.Schema;
+import { userSchema } from './User';
+import autoIncrement from 'mongoose-auto-increment';
 
-const RequestSchema = new Schema({
-  author: UserSchema,
+const Schema = mongoose.Schema;
+autoIncrement.initialize(mongoose.connection);
+
+const requestSchema = new Schema({
+  author: userSchema,
   fields: Schema.Types.Mixed,
+  requestId: Number,
   title: String,
 },
   {
     timestamps: true,
   }
 );
-export default mongoose.model('Request', RequestSchema);
+requestSchema.plugin(autoIncrement.plugin, { model: 'Request', field: 'requestId' });
+export default mongoose.model('Request', requestSchema);
