@@ -1,4 +1,5 @@
 import Request from '../models/Request';
+import User from '../models/User';
 
 class Requests {
   constructor(ctx, next) {
@@ -12,7 +13,7 @@ class Requests {
   }
 
   async all() {
-    const result = await Request.find();
+    const result = await Request.find().populate('author');
     if(result) {
       this.respond.body = result;
     }
@@ -26,6 +27,11 @@ class Requests {
   }
   async create() {
     await this.parseRequest();
+    const user = await User.findOne({ btxId: this.ctx.passport.user.Id });
+    if (user) {
+      this.request.author = user._id;
+    }
+    console.log(user);
     const request = new Request(this.request);
     const result = await request.save();
     if (result) {
