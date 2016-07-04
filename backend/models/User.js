@@ -35,9 +35,12 @@ const userSchema = new mongoose.Schema({
     },
   }
 );
+
 userSchema.virtual('fullName').get(function getFullName() {
   return `${this.lastName} ${this.name} ${this.secondName}`;
 });
-
+userSchema.virtual('shortName').get(function getShortName () {
+  return `${this.lastName} ${this.name.charAt(0)}. ${this.secondName.charAt(0)}.`;
+});
 export default mongoose.model('User', userSchema);
 export { userSchema };
