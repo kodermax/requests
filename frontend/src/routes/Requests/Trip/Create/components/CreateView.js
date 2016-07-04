@@ -2,11 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import Input from 'react-biz/lib/input';
 import DatePicker from 'react-biz/lib/date_picker';
 import { Button } from 'react-biz/lib/button';
+import { push } from 'react-router-redux';
 import theme from './CreateView.scss';
 
 export default class CreateView extends Component {
   static contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: React.PropTypes.object.isRequired,
+    store: React.PropTypes.object.isRequired
   };
   static propTypes = {
     addItem: PropTypes.func.isRequired,
@@ -15,14 +17,16 @@ export default class CreateView extends Component {
   };
   constructor (props) {
     super(props);
-    if (props.fields.length === 0) {
+    this.btnCancel = this.handleCancel.bind(this);
+    this.btnSubmit = this.handleSubmit.bind(this);
+  }
+  componentWillMount() {
+    if (this.props.fields.length === 0) {
       this.props.getFields('trip');
     }
     else {
-      this.initFields(props.fields);
+      this.initFields(this.props.fields);
     }
-    this.btnCancel = this.handleCancel.bind(this);
-    this.btnSubmit = this.handleSubmit.bind(this);
   }
   initFields (fields) {
     let tmpFields = {};
@@ -33,7 +37,7 @@ export default class CreateView extends Component {
       this.changeField[item.code] = this.handleChangeField.bind(this, item.code);
       this.fields[item.code] = item;
     });
-    this.state = tmpFields;
+    this.setState({tmpFields});
   }
   componentWillReceiveProps (nextProps) {
     if (nextProps.fields !== this.props.fields) {
@@ -45,7 +49,7 @@ export default class CreateView extends Component {
   };
   handleCancel = (e) => {
     e.preventDefault();
-    this.context.router.push('/');
+    this.context.store.dispatch(push('/'));
   };
   handleSubmit = (e) => {
     e.preventDefault();
