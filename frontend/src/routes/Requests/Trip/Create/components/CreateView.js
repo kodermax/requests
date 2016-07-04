@@ -15,39 +15,30 @@ export default class CreateView extends Component {
   };
   constructor (props) {
     super(props);
+    if (props.fields.length === 0) {
+      this.props.getFields('trip');
+    }
+    else {
+      this.initFields(props.fields);
+    }
     this.btnCancel = this.handleCancel.bind(this);
     this.btnSubmit = this.handleSubmit.bind(this);
-    if (this.props.fields.length === 0) {
-     // this.props.getFields('trip');
-    } else {
-      let tmpFields = {};
-      this.fields = {};
-      this.changeField = {};
-      props.fields.map((item) => {
-        tmpFields[item.code] = '';
-        this.changeField[item.code] = this.handleChangeField.bind(this, item.code);
-        this.fields[item.code] = item;
-      });
-      this.state = tmpFields;
-    }
   }
-  componentDidMount () {
+  initFields (fields) {
+    let tmpFields = {};
+    this.fields = {};
+    this.changeField = {};
+    fields.map((item) => {
+      tmpFields[item.code] = '';
+      this.changeField[item.code] = this.handleChangeField.bind(this, item.code);
+      this.fields[item.code] = item;
+    });
+    this.state = tmpFields;
   }
   componentWillReceiveProps (nextProps) {
     if (nextProps.fields !== this.props.fields) {
-      let tmpFields = {};
-      this.fields = {};
-      this.changeField = {};
-      nextProps.fields.map((item) => {
-        tmpFields[item.code] = '';
-        this.changeField[item.code] = this.handleChangeField.bind(this, item.code);
-        this.fields[item.code] = item;
-      });
-      this.setState(tmpFields);
+     this.initFields(nextProps.fields);
     }
-  }
-  shouldComponentUpdate () {
-    return true;
   }
   handleChangeField = (item, value) => {
     this.setState({ ...this.state, [item]: value });
@@ -66,10 +57,9 @@ export default class CreateView extends Component {
   };
 
   render () {
-    const { fields } = this.props;
     return (
       <div>
-        {fields && fields.length !== 0 &&
+        {this.fields && this.fields.length !== 0 &&
           <div>
             <DatePicker onChange={this.changeField['tripDate']} label={this.fields['tripDate'].title}
               value={this.state.tripDate}

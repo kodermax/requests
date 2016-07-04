@@ -59,14 +59,14 @@ export default class ListView extends Component {
   render () {
     const source = this.props.data.items ? this.props.data.items.map((item) => {
       return ({
-        id: item.ticketId,
+        id: item.requestId,
         title: item.title,
-        createdBy: item.creator.name + ' ' + item.creator.surname,
-        changedBy: item.changer.name + ' ' + item.changer.surname,
-        messages: item.messages.length,
-        category: item.department.title,
-        status: item.status.title,
-        responsible: item.responsible.title
+        createdBy: '',//item.creator.name + ' ' + item.creator.surname,
+        changedBy: '',//item.changer.name + ' ' + item.changer.surname,
+        messages: item.messages ? item.messages.length : 0,
+        category: '',//item.department.title,
+        status: '',//item.status.title,
+        responsible: '',//item.responsible.title
       });
     }) : [];
     return (
