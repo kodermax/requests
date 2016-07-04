@@ -13,7 +13,7 @@ const requestColumns = {
     title: 'Заголовок',
     type: String
   },
-  createdBy: {
+  author: {
     sortable: true,
     title: 'Автор',
     type: String
@@ -61,7 +61,7 @@ export default class ListView extends Component {
       return ({
         id: item.requestId,
         title: item.title,
-        createdBy: '',//item.creator.name + ' ' + item.creator.surname,
+        author: item.author.shortName,//item.creator.name + ' ' + item.creator.surname,
         changedBy: '',//item.changer.name + ' ' + item.changer.surname,
         messages: item.messages ? item.messages.length : 0,
         category: '',//item.department.title,
