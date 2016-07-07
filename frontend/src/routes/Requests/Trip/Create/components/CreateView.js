@@ -53,6 +53,10 @@ export default class CreateView extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     let data = {
+      category: {
+        code: 'trip',
+        title: 'Командировки',
+      },
       fields: this.state,
       title: 'Заявка на командировку'
     };

@@ -5,6 +5,10 @@ const Schema = mongoose.Schema;
 autoIncrement.initialize(mongoose.connection);
 const requestSchema = new Schema({
   author: {type: Schema.Types.ObjectId, ref: 'User'},
+  category: {
+    code: String,
+    title: String
+  },
   fields: Schema.Types.Mixed,
   requestId: Number,
   status: {
