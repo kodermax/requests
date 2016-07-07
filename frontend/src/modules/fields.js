@@ -34,7 +34,7 @@ export const getFields = (code) => {
     dispatch(requestGetFields());
     let token = localStorage.getItem('userToken') || null;
 
-    return fetch(`http://dev.pharm.local:3001/api/requests/categories/${code}/fields`,
+    return fetch(`http://10.1.1.219:3001/api/requests/categories/${code}/fields`,
       {
         method: 'GET',
         mode: 'cors',

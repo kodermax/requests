@@ -8,7 +8,6 @@ import theme from './CreateView.scss';
 export default class CreateView extends Component {
   static contextTypes = {
     router: React.PropTypes.object.isRequired,
-    store: React.PropTypes.object.isRequired
   };
   static propTypes = {
     addItem: PropTypes.func.isRequired,
@@ -37,7 +36,7 @@ export default class CreateView extends Component {
       this.changeField[item.code] = this.handleChangeField.bind(this, item.code);
       this.fields[item.code] = item;
     });
-    this.setState({tmpFields});
+    this.setState(tmpFields);
   }
   componentWillReceiveProps (nextProps) {
     if (nextProps.fields !== this.props.fields) {
@@ -49,7 +48,7 @@ export default class CreateView extends Component {
   };
   handleCancel = (e) => {
     e.preventDefault();
-    this.context.store.dispatch(push('/'));
+    this.context.router.push('/');
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -58,6 +57,7 @@ export default class CreateView extends Component {
       title: 'Заявка на командировку'
     };
     this.props.addItem(data);
+    this.context.router.push('/list');
   };
 
   render () {

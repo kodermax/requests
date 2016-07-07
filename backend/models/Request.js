@@ -7,6 +7,10 @@ const requestSchema = new Schema({
   author: {type: Schema.Types.ObjectId, ref: 'User'},
   fields: Schema.Types.Mixed,
   requestId: Number,
+  status: {
+    code: String,
+    title: String
+  },
   title: String,
 },
   {

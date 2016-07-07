@@ -31,7 +31,10 @@ class Requests {
     if (user) {
       this.request.author = user._id;
     }
-    console.log(user);
+    this.request.status = {
+      code: 'wait',
+      title: 'Ожидает исполнителя'
+    };
     const request = new Request(this.request);
     const result = await request.save();
     if (result) {

@@ -33,7 +33,7 @@ export const addItem = (data) => {
   return (dispatch, getState) => {
     dispatch(requestAddItem());
     let token = localStorage.getItem('userToken') || null;
-    return fetch('http://dev.pharm.local:3001/api/requests',
+    return fetch('http://10.1.1.219:3001/api/requests',
       {
         method: 'POST',
         mode: 'cors',
