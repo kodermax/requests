@@ -31,6 +31,7 @@ class Requests {
     if (user) {
       this.request.author = user._id;
     }
+    this.request.messages = 0;
     this.request.status = {
       code: 'wait',
       title: 'Ожидает исполнителя'

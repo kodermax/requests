@@ -10,6 +10,7 @@ const requestSchema = new Schema({
     title: String
   },
   fields: Schema.Types.Mixed,
+  messages: Number,
   requestId: Number,
   status: {
     code: String,
