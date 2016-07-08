@@ -65,7 +65,7 @@ export default class ListView extends Component {
         changedBy: '',//item.changer.name + ' ' + item.changer.surname,
         messages: item.messages ? item.messages.length : 0,
         category: item.category.title,
-        status: '',//item.status.title,
+        status: item.status.title,
         responsible: '',//item.responsible.title
       });
     }) : [];
