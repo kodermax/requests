@@ -59,7 +59,7 @@ export class LoadingBar extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (this.props.loading > 0 && nextProps.loading === 0) {
-      setTimeout(() => { this.hideBar(); }, 1000, true);
+      setTimeout(() => { this.hideBar(); }, 500, true);
     } else {
       this.showBar();
     }
