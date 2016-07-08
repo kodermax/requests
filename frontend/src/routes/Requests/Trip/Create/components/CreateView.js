@@ -36,7 +36,8 @@ export default class CreateView extends Component {
       this.changeField[item.code] = this.handleChangeField.bind(this, item.code);
       this.fields[item.code] = item;
     });
-    this.setState(tmpFields);
+    this.setState({fields: tmpFields});
+
   }
   componentWillReceiveProps (nextProps) {
     if (nextProps.fields !== this.props.fields) {
@@ -44,7 +45,7 @@ export default class CreateView extends Component {
     }
   }
   handleChangeField = (item, value) => {
-    this.setState({ ...this.state, [item]: value });
+    this.setState({fields: {...this.state.fields, [item]: value }});
   };
   handleCancel = (e) => {
     e.preventDefault();
@@ -57,7 +58,7 @@ export default class CreateView extends Component {
         code: 'trip',
         title: 'Командировки',
       },
-      fields: this.state,
+      fields: this.state.fields,
       title: 'Заявка на командировку'
     };
     this.props.addItem(data);
@@ -69,32 +70,35 @@ export default class CreateView extends Component {
       <div>
         {this.fields && this.fields.length !== 0 &&
           <div>
-            <DatePicker onChange={this.changeField['tripDate']} label={this.fields['tripDate'].title}
-              value={this.state.tripDate}
+            <DatePicker onChange={this.changeField['startDate']} label={this.fields['startDate'].title}
+              value={this.state.fields.startDate}
             />
-            <Input type='text' label={this.fields['country'].title} name='country' value={this.state.country}
+            <DatePicker onChange={this.changeField['endDate']} label={this.fields['endDate'].title}
+              value={this.state.fields.endDate}
+            />
+            <Input type='text' label={this.fields['country'].title} name='country' value={this.state.fields.country}
               onChange={this.changeField['country']} maxLength={16}
             />
-            <Input type='text' label={this.fields['city'].title} name='city' value={this.state.city}
+            <Input type='text' label={this.fields['city'].title} name='city' value={this.state.fields.city}
               onChange={this.changeField['city']} maxLength={50}
             />
-            <Input type='text' label={this.fields['company'].title} name='company' value={this.state.company}
+            <Input type='text' label={this.fields['company'].title} name='company' value={this.state.fields.company}
               onChange={this.changeField['company']} maxLength={100}
             />
-            <Input type='text' label={this.fields['target'].title} name='target' value={this.state.target}
+            <Input type='text' label={this.fields['target'].title} name='target' value={this.state.fields.target}
               onChange={this.changeField['target']} multiline
             />
-            <Input type='text' label={this.fields['tripTo'].title} name='tripTo' value={this.state.tripTo}
+            <Input type='text' label={this.fields['tripTo'].title} name='tripTo' value={this.state.fields.tripTo}
               onChange={this.changeField['tripTo']} multiline
             />
-            <Input type='text' label={this.fields['tripBack'].title} name='tripBack' value={this.state.tripBack}
+            <Input type='text' label={this.fields['tripBack'].title} name='tripBack' value={this.state.fields.tripBack}
               onChange={this.changeField['tripBack']} multiline
             />
-            <Input type='text' label={this.fields['daily'].title} name='daily' value={this.state.daily}
+            <Input type='text' label={this.fields['daily'].title} name='daily' value={this.state.fields.daily}
               onChange={this.changeField['daily']} multiline
             />
             <Input type='text' label={this.fields['otherExpenses'].title} name='otherExpenses'
-              value={this.state.otherExpenses} onChange={this.changeField['otherExpenses']} multiline
+              value={this.state.fields.otherExpenses} onChange={this.changeField['otherExpenses']} multiline
             />
             <div className={theme.actions}>
               <Button label='Отправить' raised primary onMouseUp={this.btnSubmit} />
