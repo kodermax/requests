@@ -36,13 +36,26 @@ export default class CreateView extends Component {
       this.changeField[item.code] = this.handleChangeField.bind(this, item.code);
       this.fields[item.code] = item;
     });
-    this.setState({fields: tmpFields});
+    this.setState({fields: tmpFields, errors: tmpFields});
 
   }
   componentWillReceiveProps (nextProps) {
     if (nextProps.fields !== this.props.fields) {
      this.initFields(nextProps.fields);
     }
+  }
+  validateFields() {
+    let errors = [];
+    Object.keys(this.fields).map((key) => {
+      if(this.fields[key].required && this.state.fields[key] === "") {
+        errors[key] = 'Поле необходимо заполнить!';
+    }
+    });
+    if (Object.keys(errors).length > 0) {
+      this.setState({errors: errors});
+      return false;
+    }
+    return true;
   }
   handleChangeField = (item, value) => {
     this.setState({fields: {...this.state.fields, [item]: value }});
@@ -61,8 +74,10 @@ export default class CreateView extends Component {
       fields: this.state.fields,
       title: 'Заявка на командировку'
     };
-    this.props.addItem(data);
-    this.context.router.push('/list');
+    if(this.validateFields()) {
+      this.props.addItem(data);
+      this.context.router.push('/list');
+    }
   };
 
   render () {
@@ -71,31 +86,31 @@ export default class CreateView extends Component {
         {this.fields && this.fields.length !== 0 &&
           <div>
             <DatePicker onChange={this.changeField['startDate']} label={this.fields['startDate'].title}
-              value={this.state.fields.startDate}
+              value={this.state.fields.startDate} error={this.state.errors.startDate}
             />
             <DatePicker onChange={this.changeField['endDate']} label={this.fields['endDate'].title}
-              value={this.state.fields.endDate}
+              value={this.state.fields.endDate} error={this.state.errors.endDate}
             />
             <Input type='text' label={this.fields['country'].title} name='country' value={this.state.fields.country}
-              onChange={this.changeField['country']} maxLength={16}
+              onChange={this.changeField['country']} maxLength={16} error={this.state.errors.country}
             />
             <Input type='text' label={this.fields['city'].title} name='city' value={this.state.fields.city}
-              onChange={this.changeField['city']} maxLength={50}
+              onChange={this.changeField['city']} maxLength={50} error={this.state.errors.city}
             />
             <Input type='text' label={this.fields['company'].title} name='company' value={this.state.fields.company}
-              onChange={this.changeField['company']} maxLength={100}
+              onChange={this.changeField['company']} maxLength={100} error={this.state.errors.company}
             />
             <Input type='text' label={this.fields['target'].title} name='target' value={this.state.fields.target}
-              onChange={this.changeField['target']} multiline
+              onChange={this.changeField['target']} multiline error={this.state.errors.target}
             />
             <Input type='text' label={this.fields['tripTo'].title} name='tripTo' value={this.state.fields.tripTo}
-              onChange={this.changeField['tripTo']} multiline
+              onChange={this.changeField['tripTo']} multiline error={this.state.errors.tripTo}
             />
             <Input type='text' label={this.fields['tripBack'].title} name='tripBack' value={this.state.fields.tripBack}
-              onChange={this.changeField['tripBack']} multiline
+              onChange={this.changeField['tripBack']} multiline error={this.state.errors.tripBack}
             />
             <Input type='text' label={this.fields['daily'].title} name='daily' value={this.state.fields.daily}
-              onChange={this.changeField['daily']} multiline
+              onChange={this.changeField['daily']} multiline error={this.state.errors.daily}
             />
             <Input type='text' label={this.fields['otherExpenses'].title} name='otherExpenses'
               value={this.state.fields.otherExpenses} onChange={this.changeField['otherExpenses']} multiline
