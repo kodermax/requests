@@ -75,8 +75,9 @@ export default class CreateView extends Component {
       title: 'Заявка на командировку'
     };
     if(this.validateFields()) {
-      this.props.addItem(data);
-      this.context.router.push('/list');
+      this.props.addItem(data).then(()=>{
+        this.context.router.push('/list');
+      });
     }
   };
 

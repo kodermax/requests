@@ -49,6 +49,7 @@ export default class ListView extends Component {
     data: PropTypes.object.isRequired
   };
   componentDidMount = () => {
+    console.log('list');
     this.props.fetchItems();
   };
 
