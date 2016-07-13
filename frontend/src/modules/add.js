@@ -28,7 +28,12 @@ function invalidAddItem (error) {
     type: ADD_ITEM_FAILURE
   };
 }
-
+function showNotification (text) {
+  return {
+    message: text,
+    type: 'SHOW_NOTIFICATION'
+  };
+}
 export const addItem = (data) => {
   return (dispatch, getState) => {
     dispatch(requestAddItem());
@@ -46,7 +51,10 @@ export const addItem = (data) => {
       }
       )
       .then(response => response.json())
-      .then(json => dispatch(receiveAddItem(json)))
+      .then(json => {
+          dispatch(receiveAddItem(json));
+          dispatch(showNotification('Заявка успешно добавлена!'))
+      })
       .catch(error => dispatch(invalidAddItem(error)));
   };
 };

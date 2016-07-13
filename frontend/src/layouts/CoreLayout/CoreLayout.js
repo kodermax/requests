@@ -1,19 +1,56 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
+import { hideNotification } from '../../store/notification';
+import { connect } from 'react-redux';
+import Snackbar from 'react-biz/lib/snackbar';
 import Header from '../../components/Header/Header';
 import classes from './CoreLayout.scss';
 import '../../styles/core.scss';
 
-export const CoreLayout = ({ children }) => (
-  <div className='container'>
-    <Header />
-    <div className={classes.mainContainer}>
-      {children}
-    </div>
-  </div>
-);
-
-CoreLayout.propTypes = {
-  children: React.PropTypes.element.isRequired
+class CoreLayout extends Component {
+  static defaultProps = {
+    notification: false,
+    notificationMessage: ''
+  };
+  static propTypes = {
+    children: PropTypes.element.isRequired,
+    hideNotification: PropTypes.func,
+    notification: PropTypes.bool,
+    notificationMessage: PropTypes.string
+  };
+  constructor(props){
+    super();
+    this.snackbarTimeout = this.handleSnackbarTimeout.bind(this);
+  }
+  handleSnackbarTimeout = (event, instance) => {
+    this.props.hideNotification();
+  };
+  render () {
+    const { children, notification, notificationMessage } = this.props;
+    return (
+      <div className='container'>
+        <Header />
+        <div className={classes.mainContainer}>
+          {children}
+        </div>
+        <Snackbar
+          action='Dismiss'
+          active={notification}
+          icon='question_answer'
+          label={notificationMessage}
+          timeout={2000}
+          onTimeout={this.snackbarTimeout}
+          type='cancel'
+        />
+      </div>
+    )
+  }
+}
+const mapActionCreators = {
+  hideNotification
 };
+const mapStateToProps = (state) => ({
+  notification: state.notification.active,
+  notificationMessage: state.notification.message
+});
 
-export default CoreLayout;
+export default connect(mapStateToProps, mapActionCreators)(CoreLayout);

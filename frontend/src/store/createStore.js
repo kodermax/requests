@@ -3,12 +3,13 @@ import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import makeRootReducer from './reducers';
 import loadingBarMiddleware from './loadingMiddleware';
+import notificationMiddleware from './notificationMiddleware';
 
 export default (initialState = {}, history) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware = [thunk, routerMiddleware(history), loadingBarMiddleware];
+  const middleware = [thunk, routerMiddleware(history), loadingBarMiddleware, notificationMiddleware];
   // ======================================================
   // Store Enhancers
   // ======================================================
