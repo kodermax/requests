@@ -33,13 +33,13 @@ class CoreLayout extends Component {
           {children}
         </div>
         <Snackbar
-          action='Dismiss'
+          action='Закрыть'
           active={notification}
-          icon='question_answer'
+          icon='done'
           label={notificationMessage}
-          timeout={2000}
+          timeout={3000}
           onTimeout={this.snackbarTimeout}
-          type='cancel'
+          type='accept'
         />
       </div>
     )
