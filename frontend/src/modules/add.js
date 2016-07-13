@@ -52,8 +52,8 @@ export const addItem = (data) => {
       )
       .then(response => response.json())
       .then(json => {
-          dispatch(receiveAddItem(json));
-          dispatch(showNotification('Заявка успешно добавлена!'))
+        dispatch(receiveAddItem(json));
+        dispatch(showNotification('Заявка успешно добавлена!'));
       })
       .catch(error => dispatch(invalidAddItem(error)));
   };

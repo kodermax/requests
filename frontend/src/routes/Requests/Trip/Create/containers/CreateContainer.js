@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import { addItem } from '../../../../../modules/add';
 import { getFields } from '../../../../../modules/fields';
 import CreateView from '../components/CreateView';
@@ -10,7 +9,7 @@ const mapActionCreators = {
 };
 
 const mapStateToProps = (state) => ({
-  fields: state.fields.data,
+  fields: state.fields.data
 });
 
 export default connect(mapStateToProps, mapActionCreators)(CreateView);

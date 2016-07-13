@@ -61,12 +61,12 @@ export default class ListView extends Component {
       return ({
         id: item.requestId,
         title: item.title,
-        author: item.author.shortName,//item.creator.name + ' ' + item.creator.surname,
-        changedBy: '',//item.changer.name + ' ' + item.changer.surname,
+        author: item.author.shortName,
+        changedBy: '',
         messages: item.messages.toString(),
         category: item.category.title,
         status: item.status.title,
-        responsible: '',//item.responsible.title
+        responsible: ''
       });
     }) : [];
     return (

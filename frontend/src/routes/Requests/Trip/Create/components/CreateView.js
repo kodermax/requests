@@ -2,31 +2,32 @@ import React, { Component, PropTypes } from 'react';
 import Input from 'react-biz/lib/input';
 import DatePicker from 'react-biz/lib/date_picker';
 import { Button } from 'react-biz/lib/button';
-import { push } from 'react-router-redux';
 import theme from './CreateView.scss';
 
 export default class CreateView extends Component {
   static contextTypes = {
-    router: React.PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired
   };
   static propTypes = {
     addItem: PropTypes.func.isRequired,
     getFields: PropTypes.func.isRequired,
     fields: PropTypes.array.isRequired
   };
+
   constructor (props) {
     super(props);
     this.btnCancel = this.handleCancel.bind(this);
     this.btnSubmit = this.handleSubmit.bind(this);
   }
-  componentWillMount() {
+
+  componentWillMount () {
     if (this.props.fields.length === 0) {
       this.props.getFields('trip');
-    }
-    else {
+    } else {
       this.initFields(this.props.fields);
     }
   }
+
   initFields (fields) {
     let tmpFields = {};
     this.fields = {};
@@ -37,19 +38,20 @@ export default class CreateView extends Component {
       this.fields[item.code] = item;
     });
     this.setState({fields: tmpFields, errors: tmpFields});
-
   }
+
   componentWillReceiveProps (nextProps) {
     if (nextProps.fields !== this.props.fields) {
-     this.initFields(nextProps.fields);
+      this.initFields(nextProps.fields);
     }
   }
-  validateFields() {
+
+  validateFields () {
     let errors = [];
     Object.keys(this.fields).map((key) => {
-      if(this.fields[key].required && this.state.fields[key] === "") {
+      if (this.fields[key].required && this.state.fields[key] === '') {
         errors[key] = 'Поле необходимо заполнить!';
-    }
+      }
     });
     if (Object.keys(errors).length > 0) {
       this.setState({errors: errors});
@@ -57,8 +59,9 @@ export default class CreateView extends Component {
     }
     return true;
   }
+
   handleChangeField = (item, value) => {
-    this.setState({fields: {...this.state.fields, [item]: value }});
+    this.setState({fields: {...this.state.fields, [item]: value}});
   };
   handleCancel = (e) => {
     e.preventDefault();
@@ -69,13 +72,13 @@ export default class CreateView extends Component {
     let data = {
       category: {
         code: 'trip',
-        title: 'Командировки',
+        title: 'Командировки'
       },
       fields: this.state.fields,
       title: 'Заявка на командировку'
     };
-    if(this.validateFields()) {
-      this.props.addItem(data).then(()=>{
+    if (this.validateFields()) {
+      this.props.addItem(data).then(() => {
         this.context.router.push('/list');
       });
     }

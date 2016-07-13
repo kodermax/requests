@@ -41,7 +41,7 @@ export const getFields = (code) => {
         headers: {
           'Accept': 'application/json',
           'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         }
       })
       .then(response => response.json())

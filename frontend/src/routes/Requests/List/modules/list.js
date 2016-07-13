@@ -36,13 +36,13 @@ export const fetchItems = () => {
   return (dispatch, getState) => {
     dispatch(requestItems());
     let token = localStorage.getItem('userToken') || null;
-    return fetch('http://dev.pharm.local:3001/api/requests',{
+    return fetch('http://dev.pharm.local:3001/api/requests', {
       mode: 'cors',
       headers: {
         'Accept': 'application/json',
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
-      },
+      }
     })
       .then(response => response.json())
       .then(json => dispatch(receiveItems(json)))

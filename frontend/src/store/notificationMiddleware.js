@@ -7,8 +7,7 @@ function createNotificationMiddleware (config = {}) {
     }
     if (action.type === 'SHOW_NOTIFICATION') {
       dispatch(showNotification(action.message));
-    }
-    else if(action.type === 'HIDE_NOTIFICATION') {
+    } else if (action.type === 'HIDE_NOTIFICATION') {
       dispatch(hideNotification());
     }
     return next(action);

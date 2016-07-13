@@ -17,15 +17,18 @@ class CoreLayout extends Component {
     notification: PropTypes.bool,
     notificationMessage: PropTypes.string
   };
-  constructor(props){
+
+  constructor (props) {
     super();
     this.snackbarTimeout = this.handleSnackbarTimeout.bind(this);
   }
+
   handleSnackbarTimeout = (event, instance) => {
     this.props.hideNotification();
   };
+
   render () {
-    const { children, notification, notificationMessage } = this.props;
+    const {children, notification, notificationMessage} = this.props;
     return (
       <div className='container'>
         <Header />
@@ -42,7 +45,7 @@ class CoreLayout extends Component {
           type='accept'
         />
       </div>
-    )
+    );
   }
 }
 const mapActionCreators = {
