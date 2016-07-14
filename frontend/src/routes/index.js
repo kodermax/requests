@@ -2,6 +2,7 @@
 import CoreLayout from '../layouts/CoreLayout/CoreLayout';
 import Home from './Home';
 import RequestsList from './Requests/List';
+import RequestsItem from './Requests/Item';
 import CreateTrip from './Requests/Trip/Create';
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -13,7 +14,8 @@ export const createRoutes = (store) => ({
   indexRoute: Home,
   childRoutes: [
     CreateTrip(store),
-    RequestsList(store)
+    RequestsList(store),
+    RequestsItem(store)
   ]
 });
 
