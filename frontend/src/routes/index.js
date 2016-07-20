@@ -4,6 +4,7 @@ import Home from './Home';
 import RequestsList from './Requests/List';
 import RequestsItem from './Requests/Item';
 import CreateTrip from './Requests/Trip/Create';
+import ListTrip from './Requests/Trip/List';
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -15,7 +16,8 @@ export const createRoutes = (store) => ({
   childRoutes: [
     CreateTrip(store),
     RequestsList(store),
-    RequestsItem(store)
+    RequestsItem(store),
+    ListTrip(store)
   ]
 });
 
