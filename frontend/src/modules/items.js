@@ -32,11 +32,19 @@ function invalidItems (error) {
     type: FETCH_ITEMS_FAILURE
   };
 }
-export const fetchItems = () => {
+function encodeQueryData (data)
+{
+  var ret = [];
+  for (var d in data) {
+    ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+  }
+  return ret.join('&');
+}
+export const fetchItems = (filter) => {
   return (dispatch, getState) => {
     dispatch(requestItems());
     let token = localStorage.getItem('userToken') || null;
-    return fetch('http://dev.pharm.local:3001/api/requests', {
+    return fetch('http://dev.pharm.local:3001/api/requests?' + encodeQueryData(filter), {
       mode: 'cors',
       headers: {
         'Accept': 'application/json',
