@@ -49,8 +49,8 @@ export default class ListView extends Component {
     data: PropTypes.object.isRequired
   };
   componentDidMount = () => {
-    let filter = {'categoryCode': 'trip'};
-    this.props.fetchItems(filter);
+    let filter = {'category.code': 'trip'};
+    this.props.fetchItems({conditions: JSON.stringify(filter)});
   };
 
   render () {
