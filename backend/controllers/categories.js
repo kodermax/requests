@@ -12,7 +12,7 @@ class CategoriesController {
   }
 
   async getFields() {
-    const category = await Category.find({ 'items.code': this.ctx.params.code });
+    const category = await Category.find({'items.code': this.ctx.params.code});
     if (category) {
       this.respond.status = 200;
       this.respond.body = category[0].items[0].fields;
@@ -22,9 +22,9 @@ class CategoriesController {
   response() {
     this.ctx.status = this.respond.status || 500;
     this.ctx.body = this.respond.body || {
-        code: this.ctx.status,
-        data: { error: 'An internal error has occured' },
-      };
+      code: this.ctx.status,
+      data: {error: 'An internal error has occured'},
+    };
     this.ctx.type = 'application/json';
   }
 }

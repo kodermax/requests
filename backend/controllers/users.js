@@ -19,12 +19,12 @@ class UsersController {
     if (result) {
       this.respond.body = result;
     } else {
-      this.respond.body = { message: 'Ошибка' };
+      this.respond.body = {message: 'Ошибка'};
     }
     this.respond.status = 200;
   }
   async get() {
-    const user = await User.find({ btxId: this.ctx.params.id });
+    const user = await User.find({btxId: this.ctx.params.id});
     if (user) {
       this.respond.status = 200;
       this.respond.body = user;
@@ -35,7 +35,7 @@ class UsersController {
     this.ctx.status = this.respond.status || 500;
     this.ctx.body = this.respond.body || {
       code: this.ctx.status,
-      data: { error: 'An internal error has occured' },
+      data: {error: 'An internal error has occured'},
     };
     this.ctx.type = 'application/json';
   }

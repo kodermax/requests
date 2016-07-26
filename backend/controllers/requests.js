@@ -17,11 +17,11 @@ class Requests {
     if (this.ctx.query.conditions) {
       conditions = JSON.parse(this.ctx.query.conditions);
     }
-    const result = await Request.find(conditions).populate('author').sort({ requestId: 'desc' });
+    const result = await Request.find(conditions).populate('author').sort({requestId: 'desc'});
     if (result) {
       this.respond.body = result;
     } else {
-      this.respond.body = { message: 'Ошибка' };
+      this.respond.body = {message: 'Ошибка'};
     }
     this.respond.status = 200;
   }
@@ -32,7 +32,7 @@ class Requests {
 
   async create() {
     await this.parseRequest();
-    const user = await User.findOne({ btxId: this.ctx.passport.user.Id });
+    const user = await User.findOne({btxId: this.ctx.passport.user.Id});
     if (user) {
       this.request.author = user._id;
     }
@@ -45,10 +45,10 @@ class Requests {
     const result = await request.save();
     if (result) {
       this.respond.status = 201;
-      this.respond.body = { id: result.id };
+      this.respond.body = {id: result.id};
     } else {
       this.respond.status = 200;
-      this.respond.body = { message: 'Ошибка при добавлении заявки' };
+      this.respond.body = {message: 'Ошибка при добавлении заявки'};
     }
   }
 
@@ -62,7 +62,7 @@ class Requests {
     this.ctx.status = this.respond.status || 500;
     this.ctx.body = this.respond.body || {
       code: this.ctx.status,
-      data: { error: 'An internal error has occured' },
+      data: {error: 'An internal error has occured'},
     };
     this.ctx.type = 'application/json';
   }
