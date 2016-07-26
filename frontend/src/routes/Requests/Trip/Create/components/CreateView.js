@@ -3,6 +3,7 @@ import Input from 'react-biz/lib/input';
 import DatePicker from 'react-biz/lib/date_picker';
 import { Button } from 'react-biz/lib/button';
 import theme from './CreateView.scss';
+import { Link } from 'react-router';
 
 export default class CreateView extends Component {
   static contextTypes = {
@@ -16,7 +17,6 @@ export default class CreateView extends Component {
 
   constructor (props) {
     super(props);
-    this.btnCancel = this.handleCancel.bind(this);
     this.btnSubmit = this.handleSubmit.bind(this);
   }
 
@@ -62,10 +62,6 @@ export default class CreateView extends Component {
 
   handleChangeField = (item, value) => {
     this.setState({fields: {...this.state.fields, [item]: value}});
-  };
-  handleCancel = (e) => {
-    e.preventDefault();
-    this.context.router.push('/');
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -121,7 +117,9 @@ export default class CreateView extends Component {
             />
             <div className={theme.actions}>
               <Button label='Отправить' raised primary onMouseUp={this.btnSubmit} />
-              <Button label='Отменить' raised onMouseUp={this.btnCancel} />
+              <Link to="/trip/list">
+                <Button label='Отменить' raised />
+              </Link>
             </div>
           </div>}
       </div>

@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import Table from 'react-biz/lib/table';
+import Button from 'react-biz/lib/button';
+import theme from './ListView.scss';
+import { Link } from 'react-router';
 
 const requestColumns = {
   id: {
@@ -44,15 +47,25 @@ const requestColumns = {
 };
 
 export default class ListView extends Component {
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  };
   static propTypes = {
     fetchItems: PropTypes.func.isRequired,
     data: PropTypes.object.isRequired
   };
+  constructor (props, context) {
+    super(props, context);
+    this.toCreate = this.handleCreate.bind(this);
+  }
   componentDidMount = () => {
     let filter = {'category.code': 'trip'};
     this.props.fetchItems({conditions: JSON.stringify(filter)});
   };
-
+  handleCreate = (e) => {
+    e.preventDefault();
+    this.context.router.push('/trip/new');
+  };
   render () {
     const source = this.props.data.items ? this.props.data.items.map((item) => {
       return ({
@@ -67,11 +80,16 @@ export default class ListView extends Component {
       });
     }) : [];
     return (
-      <Table
-        model={requestColumns}
-        selectable={false}
-        source={source}
-      />
+      <div className={theme.listContent}>
+        <Table
+          model={requestColumns}
+          selectable={false}
+          source={source}
+        />
+        <Link to="/trip/new">
+          <Button theme={theme} icon='add' floating primary />
+        </Link>
+      </div>
     );
   }
 }
