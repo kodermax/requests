@@ -4,6 +4,7 @@ import DatePicker from 'react-biz/lib/date_picker';
 import { Button } from 'react-biz/lib/button';
 import theme from './CreateView.scss';
 import { Link } from 'react-router';
+import SelectUser from '../../../../../components/SelectUser';
 
 export default class CreateView extends Component {
   static contextTypes = {
@@ -17,6 +18,10 @@ export default class CreateView extends Component {
 
   constructor (props) {
     super(props);
+    this.state = {
+      author: ''
+    };
+    this.changeUsers = this.handleUsersChange.bind(this);
     this.btnSubmit = this.handleSubmit.bind(this);
   }
 
@@ -59,7 +64,9 @@ export default class CreateView extends Component {
     }
     return true;
   }
-
+  handleUsersChange = (value) => {
+    console.log(value);
+  };
   handleChangeField = (item, value) => {
     this.setState({fields: {...this.state.fields, [item]: value}});
   };
@@ -85,6 +92,9 @@ export default class CreateView extends Component {
       <div>
         {this.fields && this.fields.length !== 0 &&
           <div>
+            <SelectUser label="Для кого" onChange={this.changeUsers}
+              value={this.state.author ? this.state.author.value : ''}
+            />
             <DatePicker onChange={this.changeField['startDate']} label={this.fields['startDate'].title}
               value={this.state.fields.startDate} error={this.state.errors.startDate}
             />

@@ -21,7 +21,7 @@ class Requests {
     if (result) {
       this.respond.body = result;
     } else {
-      this.respond.body = {message: 'Ошибка'};
+      this.respond.body = { message: 'Ошибка' };
     }
     this.respond.status = 200;
   }

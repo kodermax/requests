@@ -10,7 +10,19 @@ class UsersController {
     this.respond.status = null;
     this.respond.body = null;
   }
-
+  async all() {
+    let conditions = {};
+    if (this.ctx.query.conditions) {
+      conditions = JSON.parse(this.ctx.query.conditions);
+    }
+    const result = await User.find(conditions);
+    if (result) {
+      this.respond.body = result;
+    } else {
+      this.respond.body = { message: 'Ошибка' };
+    }
+    this.respond.status = 200;
+  }
   async get() {
     const user = await User.find({ btxId: this.ctx.params.id });
     if (user) {
