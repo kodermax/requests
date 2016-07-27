@@ -7,6 +7,7 @@ before_script:
   - npm set progress=false
   - npm -g install eslint@latest
   - npm -g install eslint-plugin-react@latest
+  - npm -g install eslint-plugin-babel@latest
   - npm -g install babel-eslint@latest
   - npm -g install estraverse@*
   - npm -g install estraverse-fb
