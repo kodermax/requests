@@ -44,8 +44,8 @@ export default class SelectUser extends React.Component {
         headers: {
           'Accept': 'application/json',
           'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       })
       .then(response => response.json())
       .then(json => this.setState({users: json})).bind(this);
@@ -61,23 +61,23 @@ export default class SelectUser extends React.Component {
   customUser = (item) => {
     const containerStyle = {
       display: 'flex',
-      flexDirection: 'row'
+      flexDirection: 'row',
     };
 
     const contentStyle = {
       display: 'flex',
       flexDirection: 'column',
       flexGrow: 2,
-      paddingLeft: '5px'
+      paddingLeft: '5px',
     };
     const positionStyle = {
       fontSize: '11px',
-      color: 'gray'
+      color: 'gray',
     };
     const avatarStyle = {
       display: 'inline-block',
       width: 40,
-      height: 40
+      height: 40,
     };
     return (
       <div style={containerStyle}>
@@ -86,7 +86,7 @@ export default class SelectUser extends React.Component {
         <div style={contentStyle}>
           <Highlighter highlightClassName={style.highlightRed}
             searchWords={this.state.query.trim().length > 0 ? this.state.query.split(' ') : []}
-            textToHighlight={item.value}
+            textToHighlight={item.value ? item.value : ''}
           />
           <span style={positionStyle}>{item.position}</span>
         </div>
