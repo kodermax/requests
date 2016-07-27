@@ -40,7 +40,6 @@ export default class CreateView extends Component {
     }
   }
   initFields (fields) {
-    console.log(fields);
     let tmpFields = {};
     let helpFields = {};
     fields.map((item) => {

@@ -28,24 +28,23 @@ export default class SelectUser extends React.Component {
   }
 
   fetchData = (q) => {
-    if (!q) {
-      q = '';
-    }
-    let token = localStorage.getItem('userToken') || null;
-    let filter = {'$or': [{name: q}, {lastName: q}]};
+    if (q) {
+      let token = localStorage.getItem('userToken') || null;
+      let filter = {'$or': [{name: {'$regex': q}}, {lastName: {'$regex': q}}]};
 
-    return fetch(`http://10.1.1.219:3001/api/users?conditions=${JSON.stringify(filter)}`,
-      {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      })
-      .then(response => response.json())
-      .then(json => this.setState({users: json})).bind(this);
+      return fetch(`http://10.1.1.219:3001/api/users?conditions=${JSON.stringify(filter)}`,
+        {
+          method: 'GET',
+          mode: 'cors',
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        })
+        .then(response => response.json())
+        .then(json => this.setState({users: json}));
+    }
   };
   handleChange = (query) => {
     this.setState({user: query});
@@ -78,12 +77,12 @@ export default class SelectUser extends React.Component {
     };
     return (
       <div style={containerStyle}>
-        {item.img ? <Avatar><img src={item.img} /></Avatar> :
+        {item.photo ? <Avatar><img src={item.photo} /></Avatar> :
           <Avatar style={avatarStyle} icon={<FontIcon value="person" />} />}
         <div style={contentStyle}>
           <Highlighter highlightClassName={style.highlightRed}
             searchWords={this.state.query.trim().length > 0 ? this.state.query.split(' ') : []}
-            textToHighlight={item.value ? item.value : ''}
+            textToHighlight={item.fullName ? item.fullName : ''}
           />
           <span style={positionStyle}>{item.position}</span>
         </div>
