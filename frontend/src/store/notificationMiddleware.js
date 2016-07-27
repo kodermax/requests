@@ -1,7 +1,7 @@
-import { showNotification, hideNotification } from './notification';
+import {showNotification, hideNotification} from './notification';
 
-function createNotificationMiddleware (config = {}) {
-  return ({ dispatch }) => next => action => {
+function createNotificationMiddleware(config = {}) {
+  return ({dispatch}) => next => action => {
     if (action.type === undefined) {
       return;
     }

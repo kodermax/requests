@@ -8,27 +8,27 @@ export const FETCH_ITEM_FAILURE = 'FETCH_ITEM_FAILURE';
 // ------------------------------------
 // Actions
 // ------------------------------------
-function requestItem () {
+function requestItem() {
   return {
     didInvalidate: false,
     type: FETCH_ITEM_REQUEST,
-    isFetching: true
+    isFetching: true,
   };
 }
-function receiveItem (result) {
+function receiveItem(result) {
   return {
     data: result,
     isFetching: false,
     didInvalidate: false,
-    type: FETCH_ITEM_SUCCESS
+    type: FETCH_ITEM_SUCCESS,
   };
 }
-function invalidItem (error) {
+function invalidItem(error) {
   return {
     data: error,
     isFetching: false,
     didInvalidate: true,
-    type: FETCH_ITEM_FAILURE
+    type: FETCH_ITEM_FAILURE,
   };
 }
 export const fetchItem = () => {
@@ -40,8 +40,8 @@ export const fetchItem = () => {
       headers: {
         'Accept': 'application/json',
         'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     })
       .then(response => response.json())
       .then(json => dispatch(receiveItem(json)))
@@ -49,7 +49,7 @@ export const fetchItem = () => {
   };
 };
 export const actions = {
-  fetchItem
+  fetchItem,
 };
 // ------------------------------------
 // Action Handlers - Возвращает новое состояние
@@ -59,10 +59,10 @@ const ACTION_HANDLERS = {
     return {
       isFetching: false,
       didInvalidate: false,
-      item: action.data
+      item: action.data,
     };
   },
-  [FETCH_ITEM_FAILURE]: (stat, action) => action.data
+  [FETCH_ITEM_FAILURE]: (stat, action) => action.data,
 };
 
 // ------------------------------------
@@ -70,9 +70,9 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 const initialState = {
   isFetching: false,
-  data: {}
+  data: {},
 };
-export default function itemReducer (state = initialState, action) {
+export default function itemReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];
   return handler ? handler(state, action) : state;
 }
