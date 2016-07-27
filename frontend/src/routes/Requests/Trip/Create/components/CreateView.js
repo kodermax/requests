@@ -1,9 +1,10 @@
 import React, {Component, PropTypes} from 'react';
+import {Link} from 'react-router';
 import Input from 'react-biz/lib/input';
 import DatePicker from 'react-biz/lib/date_picker';
+import Chip from 'react-biz/lib/chip';
 import {Button} from 'react-biz/lib/button';
 import theme from './CreateView.scss';
-import {Link} from 'react-router';
 import SelectUser from '../../../../../components/SelectUser';
 
 export default class CreateView extends Component {
@@ -21,8 +22,10 @@ export default class CreateView extends Component {
     this.changeField = {};
     this.state = {
       author: '',
+      chips: [],
       helpFields: {},
     };
+    this.deleteChip = {};
     this.changeUsers = this.handleUsersChange.bind(this);
     this.btnSubmit = this.handleSubmit.bind(this);
   }
@@ -62,8 +65,16 @@ export default class CreateView extends Component {
     }
     return true;
   }
+  handleDeleteChip = (item, key) => {
+    let chips = this.state.chips;
+    delete chips[item];
+    this.setState({chips: chips});
+  };
   handleUsersChange = (value) => {
-    console.log(value);
+    let chips = this.state.chips;
+    chips[value.login] = value.fullName;
+    this.deleteChip[value.login] = this.handleDeleteChip.bind(this, value.login);
+    this.setState({chips: chips, fields: {...this.state.fields, forUsers: ''}});
   };
   handleChangeField = (item, value) => {
     this.setState({fields: {...this.state.fields, [item]: value}});
@@ -88,6 +99,13 @@ export default class CreateView extends Component {
   render () {
     return (
       <div>
+        {this.state.chips ? Object.keys(this.state.chips).map((key) => {
+          return (
+            <Chip onDeleteClick={this.deleteChip[key]} deletable={true}
+              key={key}
+            >{this.state.chips[key]}</Chip>)
+            ;
+        }) : undefined}
         {this.state.helpFields && Object.keys(this.state.helpFields).length !== 0 &&
           <div>
             <SelectUser label={this.state.helpFields.forUsers.title} onChange={this.changeUsers}

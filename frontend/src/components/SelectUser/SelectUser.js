@@ -27,6 +27,11 @@ export default class SelectUser extends React.Component {
   componentDidMount() {
     this.fetchData();
   }
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.value !== this.state.user) {
+      this.setState({user: nextProps.value});
+    }
+  }
 
   fetchData = (q) => {
     if (q) {
