@@ -12,14 +12,16 @@ export default class CreateView extends Component {
   };
   static propTypes = {
     addItem: PropTypes.func.isRequired,
-    fields: PropTypes.array.isRequired,
+    fields: PropTypes.array,
     getFields: PropTypes.func.isRequired,
   };
 
   constructor (props) {
     super(props);
+    this.changeField = {};
     this.state = {
       author: '',
+      helpFields: {},
     };
     this.changeUsers = this.handleUsersChange.bind(this);
     this.btnSubmit = this.handleSubmit.bind(this);
@@ -33,25 +35,25 @@ export default class CreateView extends Component {
     }
   }
   componentWillReceiveProps (nextProps) {
-    if (nextProps.fields !== this.props.fields) {
+    if (nextProps.fields && nextProps.fields.length > 0 && nextProps.fields !== this.props.fields) {
       this.initFields(nextProps.fields);
     }
   }
   initFields (fields) {
+    console.log(fields);
     let tmpFields = {};
-    this.fields = {};
-    this.changeField = {};
+    let helpFields = {};
     fields.map((item) => {
       tmpFields[item.code] = '';
       this.changeField[item.code] = this.handleChangeField.bind(this, item.code);
-      this.fields[item.code] = item;
+      helpFields[item.code] = item;
     });
-    this.setState({fields: tmpFields, errors: tmpFields});
+    this.setState({fields: tmpFields, helpFields: helpFields, errors: tmpFields});
   }
   validateFields () {
     let errors = [];
-    Object.keys(this.fields).map((key) => {
-      if (this.fields[key].required && this.state.fields[key] === '') {
+    Object.keys(this.state.helpFields).map((key) => {
+      if (this.state.helpFields[key].required && this.state.fields[key] === '') {
         errors[key] = 'Поле необходимо заполнить!';
       }
     });
@@ -87,39 +89,42 @@ export default class CreateView extends Component {
   render () {
     return (
       <div>
-        {this.fields && this.fields.length !== 0 &&
+        {this.state.helpFields && Object.keys(this.state.helpFields).length !== 0 &&
           <div>
             <SelectUser label="Для кого" onChange={this.changeUsers}
               value={this.state.author ? this.state.author.value : ''}
             />
-            <DatePicker onChange={this.changeField.startDate} label={this.fields.startDate.title}
+            <DatePicker onChange={this.changeField.startDate} label={this.state.helpFields.startDate.title}
               value={this.state.fields.startDate} error={this.state.errors.startDate}
             />
-            <DatePicker onChange={this.changeField.endDate} label={this.fields.endDate.title}
+            <DatePicker onChange={this.changeField.endDate} label={this.state.helpFields.endDate.title}
               value={this.state.fields.endDate} error={this.state.errors.endDate}
             />
-            <Input type="text" label={this.fields.country.title} name="country" value={this.state.fields.country}
+            <Input type="text" label={this.state.helpFields.country.title} name="country"
+              value={this.state.fields.country}
               onChange={this.changeField.country} maxLength={16} error={this.state.errors.country}
             />
-            <Input type="text" label={this.fields.city.title} name="city" value={this.state.fields.city}
+            <Input type="text" label={this.state.helpFields.city.title} name="city" value={this.state.fields.city}
               onChange={this.changeField.city} maxLength={50} error={this.state.errors.city}
             />
-            <Input type="text" label={this.fields.company.title} name="company" value={this.state.fields.company}
+            <Input type="text" label={this.state.helpFields.company.title} name="company"
+              value={this.state.fields.company}
               onChange={this.changeField.company} maxLength={100} error={this.state.errors.company}
             />
-            <Input type="text" label={this.fields.target.title} name="target" value={this.state.fields.target}
+            <Input type="text" label={this.state.helpFields.target.title} name="target" value={this.state.fields.target}
               onChange={this.changeField.target} multiline={true} error={this.state.errors.target}
             />
-            <Input type="text" label={this.fields.tripTo.title} name="tripTo" value={this.state.fields.tripTo}
+            <Input type="text" label={this.state.helpFields.tripTo.title} name="tripTo" value={this.state.fields.tripTo}
               onChange={this.changeField.tripTo} multiline={true} error={this.state.errors.tripTo}
             />
-            <Input type="text" label={this.fields.tripBack.title} name="tripBack" value={this.state.fields.tripBack}
+            <Input type="text" label={this.state.helpFields.tripBack.title} name="tripBack"
+              value={this.state.fields.tripBack}
               onChange={this.changeField.tripBack} multiline={true} error={this.state.errors.tripBack}
             />
-            <Input type="text" label={this.fields.daily.title} name="daily" value={this.state.fields.daily}
+            <Input type="text" label={this.state.helpFields.daily.title} name="daily" value={this.state.fields.daily}
               onChange={this.changeField.daily} multiline={true} error={this.state.errors.daily}
             />
-            <Input type="text" label={this.fields.otherExpenses.title} name="otherExpenses"
+            <Input type="text" label={this.state.helpFields.otherExpenses.title} name="otherExpenses"
               value={this.state.fields.otherExpenses} onChange={this.changeField.otherExpenses} multiline={true}
             />
             <div className={theme.actions}>
