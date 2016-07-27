@@ -86,7 +86,7 @@ export default class ListView extends Component {
           selectable={false}
           source={source}
         />
-        <Link to="/trip/new">
+        <Link to="/requests/trip/new">
           <Button theme={theme} icon="add" floating={true} primary={true} />
         </Link>
       </div>
