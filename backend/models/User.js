@@ -43,4 +43,4 @@ userSchema.virtual('shortName').get(function getShortName () {
   return `${this.lastName} ${this.name.charAt(0)}. ${this.secondName.charAt(0)}.`;
 });
 export default mongoose.model('User', userSchema);
-export { userSchema };
+export {userSchema};

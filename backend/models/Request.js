@@ -7,14 +7,14 @@ const requestSchema = new Schema({
   author: {type: Schema.Types.ObjectId, ref: 'User'},
   category: {
     code: String,
-    title: String
+    title: String,
   },
   fields: Schema.Types.Mixed,
   messages: Number,
   requestId: Number,
   status: {
     code: String,
-    title: String
+    title: String,
   },
   title: String,
 },
@@ -22,5 +22,5 @@ const requestSchema = new Schema({
     timestamps: true,
   }
 );
-requestSchema.plugin(autoIncrement.plugin, { model: 'Request', field: 'requestId' });
+requestSchema.plugin(autoIncrement.plugin, {model: 'Request', field: 'requestId'});
 export default mongoose.model('Request', requestSchema);

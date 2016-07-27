@@ -4,6 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import config from '../config';
 import _debug from 'debug';
+import 'whatwg-fetch';
 
 const debug = _debug('app:webpack:config');
 const paths = config.utils_paths;
@@ -26,6 +27,7 @@ const webpackConfig = {
 const APP_ENTRY_PATHS = [
   'babel-polyfill',
   paths.client('main.js'),
+  'whatwg-fetch',
 ];
 webpackConfig.entry = {
   app: __DEV__
