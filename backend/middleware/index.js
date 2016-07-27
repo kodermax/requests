@@ -13,5 +13,5 @@ export default () => compose([
       json: ['application/json'],
     },
   }),
-  jwtValidate({ secret: 'PWo94z6ohCpueJYpB03oW9z1H8KnXBgA', jwtOpts: { algorithms: ['HS256'] } }),
+  jwtValidate({secret: 'tjqMsP0jo2I7B139vdTMZi324g33tab1', jwtOpts: {algorithms: ['HS256']}}),
 ]);
