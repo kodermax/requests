@@ -40,7 +40,7 @@ if (__DEBUG__) {
 // ========================================================
 // Render Setup
 // ========================================================
-const MOUNT_NODE = document.getElementById('root');
+const MOUNT_NODE = document.getElementById('app');
 
 let render = (routerKey = null) => {
   const routes = require('./routes/index').default(store);

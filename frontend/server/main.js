@@ -22,7 +22,7 @@ if (config.proxy && config.proxy.enabled) {
 // (ignoring file requests). If you want to implement isomorphic
 // rendering, you'll want to remove this middleware.
 app.use(convert(historyApiFallback({
-  verbose: false
+  verbose: false,
 })));
 
 // ------------------------------------
@@ -32,7 +32,7 @@ if (config.env === 'development') {
   const compiler = webpack(webpackConfig);
 
   // Enable webpack-dev and webpack-hot middleware
-  const { publicPath } = webpackConfig.output;
+  const {publicPath} = webpackConfig.output;
 
   app.use(webpackDevMiddleware(compiler, publicPath));
   app.use(webpackHMRMiddleware(compiler));

@@ -30,7 +30,7 @@ class CoreLayout extends Component {
   render () {
     const {children, notification, notificationMessage} = this.props;
     return (
-      <div className="">
+      <div>
         <Header />
         <div className={classes.mainContainer}>
           {children}
