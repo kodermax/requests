@@ -10,7 +10,7 @@ import ListTrip from './Requests/Trip/List';
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ({
-  path: '/requests/',
+  path: '/requests',
   component: CoreLayout,
   indexRoute: Home,
   childRoutes: [

@@ -16,11 +16,11 @@ export default class Header extends Component {
   }
   handleToHome = (e) => {
     e.preventDefault();
-    this.context.router.push('/');
+    this.context.router.push('/requests');
   };
   handleToList = (e) => {
     e.preventDefault();
-    this.context.router.push('/list');
+    this.context.router.push('/requests/list');
   };
 
   render () {
