@@ -7,11 +7,11 @@ import ListView from '../components/ListView';
  implementing our wrapper around increment; the component doesn't care   */
 
 const mapActionCreators = {
-  fetchItems,
+  fetchItems
 };
 
 const mapStateToProps = (state) => ({
-  data: state.trip_list,
+  data: state.trip_list
 });
 
 export default connect(mapStateToProps, mapActionCreators)(ListView);

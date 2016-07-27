@@ -13,7 +13,7 @@ function requestItems () {
   return {
     didInvalidate: false,
     type: FETCH_ITEMS_REQUEST,
-    isFetching: true,
+    isFetching: true
   };
 }
 function receiveItems (result) {
@@ -21,7 +21,7 @@ function receiveItems (result) {
     data: result,
     isFetching: false,
     didInvalidate: false,
-    type: FETCH_ITEMS_SUCCESS,
+    type: FETCH_ITEMS_SUCCESS
   };
 }
 function invalidItems (error) {
@@ -29,7 +29,7 @@ function invalidItems (error) {
     data: error,
     isFetching: false,
     didInvalidate: true,
-    type: FETCH_ITEMS_FAILURE,
+    type: FETCH_ITEMS_FAILURE
   };
 }
 export const fetchItems = () => {
@@ -41,8 +41,8 @@ export const fetchItems = () => {
       headers: {
         'Accept': 'application/json',
         'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json'
+      }
     })
       .then(response => response.json())
       .then(json => dispatch(receiveItems(json)))
@@ -50,7 +50,7 @@ export const fetchItems = () => {
   };
 };
 export const actions = {
-  fetchItems,
+  fetchItems
 };
 // ------------------------------------
 // Action Handlers - Возвращает новое состояние
@@ -60,10 +60,10 @@ const ACTION_HANDLERS = {
     return {
       isFetching: false,
       didInvalidate: false,
-      items: action.data,
+      items: action.data
     };
   },
-  [FETCH_ITEMS_FAILURE]: (stat, action) => action.data,
+  [FETCH_ITEMS_FAILURE]: (stat, action) => action.data
 };
 
 // ------------------------------------
@@ -71,7 +71,7 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 const initialState = {
   isFetching: false,
-  data: {},
+  data: {}
 };
 export default function listReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];

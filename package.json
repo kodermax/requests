@@ -12,7 +12,7 @@
     "clean": "rimraf frontend/dist",
     "compile": "better-npm-run compile",
     "lint": "eslint frontend/src frontend/tests frontend/server",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "npm run lint --fix",
     "start": "better-npm-run start",
     "heroku_start": "better-npm-run heroku",
     "dev": "better-npm-run dev",

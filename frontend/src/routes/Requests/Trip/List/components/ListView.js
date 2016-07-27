@@ -9,51 +9,51 @@ const requestColumns = {
   id: {
     title: 'ID',
     type: String,
-    sortable: true,
+    sortable: true
   },
   title: {
     crop: true,
     sortable: true,
     title: 'Заголовок',
-    type: String,
+    type: String
   },
   author: {
     sortable: true,
     title: 'Автор',
-    type: String,
+    type: String
   },
   changedBy: {
     sortable: true,
     title: 'Изменил',
-    type: String,
+    type: String
   },
   messages: {
     title: 'Сооб.',
-    type: String,
+    type: String
   },
   category: {
     sortable: true,
     title: 'Категория',
-    type: String,
+    type: String
   },
   status: {
     sortable: true,
     title: 'Статус',
-    type: String,
+    type: String
   },
   responsible: {
     title: 'Исполнитель',
-    type: String,
-  },
+    type: String
+  }
 };
 
 export default class ListView extends Component {
   static contextTypes = {
-    router: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired
   };
   static propTypes = {
     data: PropTypes.object.isRequired,
-    fetchItems: PropTypes.func.isRequired,
+    fetchItems: PropTypes.func.isRequired
   };
   constructor (props, context) {
     super(props, context);
@@ -77,7 +77,7 @@ export default class ListView extends Component {
         messages: item.messages.toString(),
         category: item.category.title,
         status: item.status.title,
-        responsible: '',
+        responsible: ''
       });
     }) : [];
     return (
@@ -88,8 +88,8 @@ export default class ListView extends Component {
           source={source}
           className={themeTable.table}
         />
-        <Link to="/requests/trip/new">
-          <Button theme={theme} icon="add" floating={true} primary={true} />
+        <Link to='/requests/trip/new'>
+          <Button theme={theme} icon='add' floating primary />
         </Link>
       </div>
     );

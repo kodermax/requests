@@ -10,21 +10,21 @@ export default class SelectUser extends React.Component {
     error: React.PropTypes.string,
     label: React.PropTypes.string,
     onChange: React.PropTypes.func,
-    value: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.string]),
+    value: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.string])
   };
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       countries: '',
       query: '',
       user: this.props.value,
-      users: [],
+      users: []
     };
     this.inputChange = this.handleChange.bind(this);
     this.selectItem = this.handleSelect.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.fetchData();
   }
   componentWillReceiveProps (nextProps) {
@@ -36,7 +36,7 @@ export default class SelectUser extends React.Component {
   fetchData = (q) => {
     if (q) {
       let token = localStorage.getItem('userToken') || null;
-      let filter = {'$or': [{name: {'$regex': q, '$options' : 'i'}}, {lastName: {'$regex': q, '$options' : 'i'}}]};
+      let filter = {'$or': [{name: {'$regex': q, '$options': 'i'}}, {lastName: {'$regex': q, '$options': 'i'}}]};
 
       return fetch(`http://10.1.1.219:3001/api/users?conditions=${JSON.stringify(filter)}`,
         {
@@ -45,8 +45,8 @@ export default class SelectUser extends React.Component {
           headers: {
             'Accept': 'application/json',
             'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
+            'Content-Type': 'application/json'
+          }
         })
         .then(response => response.json())
         .then(json => this.setState({users: json}));
@@ -63,28 +63,30 @@ export default class SelectUser extends React.Component {
   customUser = (item) => {
     const containerStyle = {
       display: 'flex',
-      flexDirection: 'row',
+      flexDirection: 'row'
     };
 
     const contentStyle = {
       display: 'flex',
       flexDirection: 'column',
       flexGrow: 2,
-      paddingLeft: '5px',
+      paddingLeft: '5px'
     };
     const positionStyle = {
       fontSize: '11px',
-      color: 'gray',
+      color: 'gray'
     };
     const avatarStyle = {
       display: 'inline-block',
       width: 40,
-      height: 40,
+      height: 40
     };
     return (
       <div style={containerStyle}>
-        {item.photo ? <Avatar><img src={item.photo} /></Avatar> :
-          <Avatar style={avatarStyle} icon={<FontIcon value="person" />} />}
+        {item.photo ? <Avatar><img src={item.photo} /></Avatar> : <Avatar style={avatarStyle}
+          icon={<FontIcon value='person'
+        />}
+      />}
         <div style={contentStyle}>
           <Highlighter highlightClassName={style.highlightRed}
             searchWords={this.state.user.trim().length > 0 ? this.state.user.split(' ') : []}
@@ -96,15 +98,15 @@ export default class SelectUser extends React.Component {
     );
   };
 
-  render() {
+  render () {
     let label = this.props.label ? this.props.label : 'Выбор сотрудника';
     return (
       <Autosuggest
         className={style.suggest}
-        direction="down"
+        direction='down'
         label={label}
         multiple={false}
-        name="user"
+        name='user'
         error={this.props.error}
         onChange={this.inputChange}
         onSelectItem={this.selectItem}

@@ -13,5 +13,5 @@ export default (store) => ({
       injectReducer(store, {key: 'trip_list', reducer});
       cb(null, list);
     }, 'trip');
-  },
+  }
 });

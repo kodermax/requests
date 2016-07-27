@@ -17,8 +17,8 @@ export const createRoutes = (store) => ({
     CreateTrip(store),
     RequestsList(store),
     RequestsItem(store),
-    ListTrip(store),
-  ],
+    ListTrip(store)
+  ]
 });
 
 export default createRoutes;

@@ -4,12 +4,12 @@ export default class ListView extends Component {
     params: PropTypes.object
   };
 
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.id = this.props.params.id;
   }
 
-  render() {
+  render () {
     return (
       <div>
         {this.props.params.id}

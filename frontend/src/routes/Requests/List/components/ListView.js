@@ -5,42 +5,42 @@ const requestColumns = {
   id: {
     title: 'ID',
     type: String,
-    sortable: true,
+    sortable: true
   },
   title: {
     crop: true,
     sortable: true,
     title: 'Заголовок',
-    type: String,
+    type: String
   },
   author: {
     sortable: true,
     title: 'Автор',
-    type: String,
+    type: String
   },
   changedBy: {
     sortable: true,
     title: 'Изменил',
-    type: String,
+    type: String
   },
   messages: {
     title: 'Сооб.',
-    type: String,
+    type: String
   },
   category: {
     sortable: true,
     title: 'Категория',
-    type: String,
+    type: String
   },
   status: {
     sortable: true,
     title: 'Статус',
-    type: String,
+    type: String
   },
   responsible: {
     title: 'Исполнитель',
-    type: String,
-  },
+    type: String
+  }
 };
 
 export default class ListView extends Component {
@@ -56,7 +56,7 @@ export default class ListView extends Component {
     this.setState({selected});
   };
 
-  render() {
+  render () {
     const source = this.props.data.items ? this.props.data.items.map((item) => {
       return ({
         id: item.requestId,
@@ -66,7 +66,7 @@ export default class ListView extends Component {
         messages: item.messages.toString(),
         category: item.category.title,
         status: item.status.title,
-        responsible: '',
+        responsible: ''
       });
     }) : [];
     return (
