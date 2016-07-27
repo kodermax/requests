@@ -9,6 +9,7 @@ before_script:
   - npm -g install eslint-plugin-react@latest
   - npm -g install eslint-plugin-babel@latest
   - npm -g install eslint-plugin-promise@latest
+    - npm -g install eslint-config-standard@latest
   - npm -g install eslint-config-standard-react@latest
   - npm -g install babel-eslint@latest
   - npm -g install estraverse@*
