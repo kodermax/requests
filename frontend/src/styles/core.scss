@@ -9,6 +9,11 @@ html {
   -ms-text-size-adjust: 100%; /* 3 */
   -webkit-text-size-adjust: 100%; /* 3 */
 }
+@media only screen and (device-width: 768px) {
+  html {
+    font-size:11px;
+  }
+}
 
 body {
   margin: 0;

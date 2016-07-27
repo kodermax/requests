@@ -72,7 +72,7 @@ export default class CreateView extends Component {
   };
   handleUsersChange = (value) => {
     let chips = this.state.chips;
-    chips[value.login] = value.fullName;
+    chips[value.login] = value.shortName;
     this.deleteChip[value.login] = this.handleDeleteChip.bind(this, value.login);
     this.setState({chips: chips, fields: {...this.state.fields, forUsers: ''}});
   };

@@ -3,6 +3,7 @@ import Table from 'react-biz/lib/table';
 import Button from 'react-biz/lib/button';
 import theme from './ListView.scss';
 import {Link} from 'react-router';
+import themeTable from '../../../../../styles/table.scss';
 
 const requestColumns = {
   id: {
@@ -85,6 +86,7 @@ export default class ListView extends Component {
           model={requestColumns}
           selectable={false}
           source={source}
+          className={themeTable.table}
         />
         <Link to="/requests/trip/new">
           <Button theme={theme} icon="add" floating={true} primary={true} />

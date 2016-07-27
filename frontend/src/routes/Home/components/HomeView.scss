@@ -112,6 +112,7 @@
   transition-property: background-color,box-shadow,border,color,opacity,transform;
   transition-duration: 0.3s;
 }
+
 .items li {
   line-height: 1.1em;
 }
@@ -123,5 +124,8 @@
     margin-left: 0 !important;
     margin-right: 0 !important;
     margin-bottom: 30px;
+  }
+  .items li, .items li a {
+    font-size: 18px
   }
 }
