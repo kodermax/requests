@@ -3,18 +3,7 @@ image: node:wheezy
 before_script:
   - apt-get -qq update
   - apt-get -qq install -y python2.7 python2.7-dev build-essential make gcc g++ libicu-dev
-  - npm -g install npm@latest --silent
-  - npm set progress=true
-  - npm -g install eslint@latest
-  - npm -g install babel-eslint@latest
-  - npm -g install eslint-plugin-react@latest
-  - npm -g install eslint-plugin-babel@latest
-  - npm -g install eslint-plugin-promise@latest
-  - npm -g install eslint-config-standard@latest
-  - npm -g install eslint-config-standard-react@latest
-  - npm --save-dev install eslint-plugin-standard@latest
-  - npm -g install estraverse@*
-  - npm -g install estraverse-fb
+  - npm install
   - node --version
   - npm --version
 stages:
