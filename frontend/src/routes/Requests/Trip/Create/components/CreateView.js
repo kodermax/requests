@@ -90,8 +90,8 @@ export default class CreateView extends Component {
       <div>
         {this.state.helpFields && Object.keys(this.state.helpFields).length !== 0 &&
           <div>
-            <SelectUser label="Для кого" onChange={this.changeUsers}
-              value={this.state.author ? this.state.author.value : ''}
+            <SelectUser label={this.state.helpFields.forUsers.title} onChange={this.changeUsers}
+              value={this.state.fields.forUsers}
             />
             <DatePicker onChange={this.changeField.startDate} label={this.state.helpFields.startDate.title}
               value={this.state.fields.startDate} error={this.state.errors.startDate}

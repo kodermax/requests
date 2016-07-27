@@ -15,8 +15,7 @@ class UsersController {
     if (this.ctx.query.conditions) {
       conditions = JSON.parse(this.ctx.query.conditions);
     }
-    console.log(conditions);
-    const result = await User.find(conditions);
+    const result = await User.find(conditions).limit(5);
     if (result) {
       this.respond.body = result;
     } else {

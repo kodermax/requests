@@ -12,25 +12,26 @@ export default class SelectUser extends React.Component {
     onChange: React.PropTypes.func,
     value: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.string]),
   };
-  state = {
-    countries: '',
-    query: '',
-    user: this.props.value,
-    users: [],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      countries: '',
+      query: '',
+      user: this.props.value,
+      users: [],
+    };
+    this.inputChange = this.handleChange.bind(this);
+    this.selectItem = this.handleSelect.bind(this);
+  }
 
   componentDidMount() {
     this.fetchData();
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({user: nextProps.value});
-  }
-
   fetchData = (q) => {
     if (q) {
       let token = localStorage.getItem('userToken') || null;
-      let filter = {'$or': [{name: {'$regex': q}}, {lastName: {'$regex': q}}]};
+      let filter = {'$or': [{name: {'$regex': q, '$options' : 'i'}}, {lastName: {'$regex': q, '$options' : 'i'}}]};
 
       return fetch(`http://10.1.1.219:3001/api/users?conditions=${JSON.stringify(filter)}`,
         {
@@ -81,8 +82,8 @@ export default class SelectUser extends React.Component {
           <Avatar style={avatarStyle} icon={<FontIcon value="person" />} />}
         <div style={contentStyle}>
           <Highlighter highlightClassName={style.highlightRed}
-            searchWords={this.state.query.trim().length > 0 ? this.state.query.split(' ') : []}
-            textToHighlight={item.fullName ? item.fullName : ''}
+            searchWords={this.state.user.trim().length > 0 ? this.state.user.split(' ') : []}
+            textToHighlight={item.fullName}
           />
           <span style={positionStyle}>{item.position}</span>
         </div>
@@ -100,8 +101,8 @@ export default class SelectUser extends React.Component {
         multiple={false}
         name="user"
         error={this.props.error}
-        onChange={this.handleChange}
-        onSelectItem={this.handleSelect}
+        onChange={this.inputChange}
+        onSelectItem={this.selectItem}
         source={this.state.users}
         template={this.customUser}
         value={this.state.user}
