@@ -117,7 +117,7 @@
 }
 
 
-@media (max-width: 768px) {
+@media only screen and (device-width: 768px) {
   .g-cols > div {
     width: 100% !important;
     margin-left: 0 !important;
