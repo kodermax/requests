@@ -1,4 +1,4 @@
-import { injectReducer } from '../../../../store/reducers';
+import {injectReducer} from '../../../../store/reducers';
 
 export default (store) => ({
   path: 'trip/list',
@@ -10,8 +10,8 @@ export default (store) => ({
       const reducer = require('./../../../../modules/items').default;
 
       // Добавляем редьюсер в хранилище с ключом requests
-      injectReducer(store, { key: 'trip_list', reducer });
+      injectReducer(store, {key: 'trip_list', reducer});
       cb(null, list);
     }, 'trip');
-  }
+  },
 });
