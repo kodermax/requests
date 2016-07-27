@@ -26,12 +26,11 @@ export default class Header extends Component {
   render () {
     return (
       <div>
-        <h1>Заявки</h1>
-        <AppBar flat theme={theme}>
-          <Button icon='home' theme={theme} onMouseUp={this.toHome} />
-          <Button label='Все заявки' raised onMouseUp={this.toList} />
-          <Badge theme={theme} badgeContent={10} secondary badgeStyle={{top: 12, right: 12}}>
-            <Button label='Исполняю' raised />
+        <AppBar flat={true} theme={theme}>
+          <Button icon="home" theme={theme} onMouseUp={this.toHome} />
+          <Button label="Все заявки" raised={true} onMouseUp={this.toList} />
+          <Badge theme={theme} badgeContent={10} secondary={true} badgeStyle={{top: 12, right: 12}}>
+            <Button label="Исполняю" raised={true} />
           </Badge>
         </AppBar>
         <LoadingBar />

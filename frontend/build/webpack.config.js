@@ -16,31 +16,32 @@ const webpackConfig = {
   devtool: config.compiler_devtool,
   resolve: {
     root: paths.client(),
-    extensions: ['', '.js', '.jsx', '.json', '.scss']
+    extensions: ['', '.js', '.jsx', '.json', '.scss'],
   },
-  module: {}
+  module: {},
 };
 // ------------------------------------
 // Entry Points
 // ------------------------------------
 const APP_ENTRY_PATHS = [
   'babel-polyfill',
-  paths.client('main.js')
+  paths.client('main.js'),
 ];
 webpackConfig.entry = {
   app: __DEV__
    ? APP_ENTRY_PATHS.concat(`webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`)
    : APP_ENTRY_PATHS,
-  vendor: config.compiler_vendor
+  vendor: config.compiler_vendor,
 };
 
 // ------------------------------------
 // Bundle Output
 // ------------------------------------
 webpackConfig.output = {
-  filename: `[name].[${config.compiler_hash_type}].js`,
+  //filename: `[name].[${config.compiler_hash_type}].js`,
+  filename: '[name].js',
   path: paths.dist(),
-  publicPath: config.compiler_public_path
+  publicPath: config.compiler_public_path,
 };
 
 // ------------------------------------
@@ -55,9 +56,9 @@ webpackConfig.plugins = [
     filename: 'index.html',
     inject: 'body',
     minify: {
-      collapseWhitespace: true
-    }
-  })
+      collapseWhitespace: true,
+    },
+  }),
 ];
 
 if (__DEV__) {
@@ -75,8 +76,8 @@ if (__DEV__) {
       compress: {
         unused: true,
         dead_code: true,
-        warnings: false
-      }
+        warnings: false,
+      },
     })
   );
 }
@@ -85,7 +86,7 @@ if (__DEV__) {
 if (!__TEST__) {
   webpackConfig.plugins.push(
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor']
+      names: ['vendor'],
     })
   );
 }
@@ -130,14 +131,14 @@ webpackConfig.module.loaders = [{
     presets: ['es2015', 'react', 'stage-0'],
     env: {
       production: {
-        presets: ['react-optimize']
-      }
-    }
-  }
+        presets: ['react-optimize'],
+      },
+    },
+  },
 },
 {
   test: /\.json$/,
-  loader: 'json'
+  loader: 'json',
 }];
 
 // ------------------------------------
@@ -150,7 +151,7 @@ const BASE_CSS_LOADER = 'css?sourceMap&-minimize';
 // Add any packge names here whose styles need to be treated as CSS modules.
 // These paths will be combined into a single regex.
 const PATHS_TO_TREAT_AS_CSS_MODULES = [
-  'react-biz'
+  'react-biz',
 ];
 
 // If config has CSS modules enabled, treat this project's styles as CSS modules.
@@ -169,7 +170,7 @@ if (isUsingCSSModules) {
     BASE_CSS_LOADER,
     'modules',
     'importLoaders=1',
-    'localIdentName=[name]__[local]___[hash:base64:5]'
+    'localIdentName=[name]__[local]___[hash:base64:5]',
   ].join('&');
 
   webpackConfig.module.loaders.push({
@@ -179,8 +180,8 @@ if (isUsingCSSModules) {
       'style',
       cssModulesLoader,
       'postcss',
-      'sass?sourceMap'
-    ]
+      'sass?sourceMap',
+    ],
   });
 
   webpackConfig.module.loaders.push({
@@ -189,8 +190,8 @@ if (isUsingCSSModules) {
     loaders: [
       'style',
       cssModulesLoader,
-      'postcss'
-    ]
+      'postcss',
+    ],
   });
 }
 
@@ -203,8 +204,8 @@ webpackConfig.module.loaders.push({
     'style',
     BASE_CSS_LOADER,
     'postcss',
-    'sass?sourceMap'
-  ]
+    'sass?sourceMap',
+  ],
 });
 webpackConfig.module.loaders.push({
   test: /\.css$/,
@@ -212,15 +213,15 @@ webpackConfig.module.loaders.push({
   loaders: [
     'style',
     BASE_CSS_LOADER,
-    'postcss'
-  ]
+    'postcss',
+  ],
 });
 
 // ------------------------------------
 // Style Configuration
 // ------------------------------------
 webpackConfig.sassLoader = {
-  includePaths: paths.client('styles')
+  includePaths: paths.client('styles'),
 };
 
 webpackConfig.postcss = [
@@ -228,17 +229,17 @@ webpackConfig.postcss = [
     autoprefixer: {
       add: true,
       remove: true,
-      browsers: ['last 2 versions']
+      browsers: ['last 2 versions'],
     },
     discardComments: {
-      removeAll: true
+      removeAll: true,
     },
     discardUnused: false,
     mergeIdents: false,
     reduceIdents: false,
     safe: true,
-    sourcemap: true
-  })
+    sourcemap: true,
+  }),
 ];
 
 // File loaders
@@ -272,7 +273,7 @@ if (!__DEV__) {
 
   webpackConfig.plugins.push(
     new ExtractTextPlugin('[name].[contenthash].css', {
-      allChunks: true
+      allChunks: true,
     })
   );
 }
