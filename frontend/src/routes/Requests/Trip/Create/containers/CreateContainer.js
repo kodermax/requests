@@ -1,15 +1,15 @@
-import { connect } from 'react-redux';
-import { addItem } from '../../../../../modules/add';
-import { getFields } from '../../../../../modules/fields';
+import {connect} from 'react-redux';
+import {addItem} from '../../../../../modules/add';
+import {getFields} from '../../../../../modules/fields';
 import CreateView from '../components/CreateView';
 
 const mapActionCreators = {
   addItem,
-  getFields
+  getFields,
 };
 
 const mapStateToProps = (state) => ({
-  fields: state.fields.data
+  fields: state.fields.data,
 });
 
 export default connect(mapStateToProps, mapActionCreators)(CreateView);

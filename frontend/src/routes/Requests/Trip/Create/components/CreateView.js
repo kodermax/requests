@@ -26,7 +26,7 @@ export default class CreateView extends Component {
   }
 
   componentWillMount () {
-    if (this.props.fields.length === 0) {
+    if (this.props.fields && this.props.fields.length === 0) {
       this.props.getFields('trip');
     } else {
       this.initFields(this.props.fields);
