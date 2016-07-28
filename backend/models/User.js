@@ -2,41 +2,41 @@ import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
   birthday: {
-    type: String,
+    type: String
   },
   btxId: {
-    type: String,
+    type: String
   },
   guid: {
-    type: String,
+    type: String
   },
   name: {
-    type: String,
+    type: String
   },
   lastName: {
-    type: String,
+    type: String
   },
   login: {
-    type: String,
+    type: String
   },
   position: {
-    type: String,
+    type: String
   },
   photo: {
-    type: String,
+    type: String
   },
   secondName: {
-    type: String,
-  },
+    type: String
+  }
 },
   {
     toJSON: {
-      virtuals: true,
-    },
+      virtuals: true
+    }
   }
 );
 
-userSchema.virtual('fullName').get(function getFullName() {
+userSchema.virtual('fullName').get(function getFullName () {
   return `${this.lastName} ${this.name} ${this.secondName}`;
 });
 userSchema.virtual('shortName').get(function getShortName () {

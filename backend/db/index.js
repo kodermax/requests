@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export async function connectDatabase() {
+export async function connectDatabase () {
   try {
     mongoose.connect('mongodb://localhost/portal');
     mongoose.connection.on('error', console.error);

@@ -9,15 +9,15 @@ const categorySchema = new mongoose.Schema(
         default: String,
         title: String,
         type: {
-          type: String,
-        },
+          type: String
+        }
       }],
-      title: String,
+      title: String
     }],
-    title: String,
+    title: String
   },
   {
-    collection: 'requests_cats',
+    collection: 'requests_cats'
   }
 );
 

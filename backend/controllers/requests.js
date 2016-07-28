@@ -2,7 +2,7 @@ import Request from '../models/Request';
 import User from '../models/User';
 
 class Requests {
-  constructor(ctx, next) {
+  constructor (ctx, next) {
     this.db = ctx.db || null;
     this.ctx = ctx;
     this.next = next;
@@ -12,7 +12,7 @@ class Requests {
     this.respond.body = null;
   }
 
-  async all() {
+  async all () {
     let conditions = {};
     if (this.ctx.query.conditions) {
       conditions = JSON.parse(this.ctx.query.conditions);
@@ -26,11 +26,11 @@ class Requests {
     this.respond.status = 200;
   }
 
-  async parseRequest() {
+  async parseRequest () {
     this.request = (this.ctx.request && this.ctx.request.body) ? this.ctx.request.body : '';
   }
 
-  async create() {
+  async create () {
     await this.parseRequest();
     const user = await User.findOne({btxId: this.ctx.passport.user.Id});
     if (user) {
@@ -39,7 +39,7 @@ class Requests {
     this.request.messages = 0;
     this.request.status = {
       code: 'wait',
-      title: 'Ожидает исполнителя',
+      title: 'Ожидает исполнителя'
     };
     const request = new Request(this.request);
     const result = await request.save();
@@ -52,17 +52,17 @@ class Requests {
     }
   }
 
-  async fields() {
+  async fields () {
     const result = await this.model().fields(this.ctx.params.code);
     this.respond.status = 200;
     this.respond.body = result;
   }
 
-  response() {
+  response () {
     this.ctx.status = this.respond.status || 500;
     this.ctx.body = this.respond.body || {
       code: this.ctx.status,
-      data: {error: 'An internal error has occured'},
+      data: {error: 'An internal error has occured'}
     };
     this.ctx.type = 'application/json';
   }

@@ -6,11 +6,11 @@ const routes = importDir('./routes');
 
 export default () => {
   const router = new Router({
-    prefix: '/api',
+    prefix: '/api'
   });
   Object.keys(routes).forEach(name => routes[name](router));
   return compose([
     router.routes(),
-    router.allowedMethods(),
+    router.allowedMethods()
   ]);
 };

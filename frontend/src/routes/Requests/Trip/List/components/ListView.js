@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {Card, CardTitle, CardText} from 'react-biz/lib/card';
 import Table from 'react-biz/lib/table';
 import Button from 'react-biz/lib/button';
 import theme from './ListView.scss';
@@ -82,16 +83,20 @@ export default class ListView extends Component {
     }) : [];
     return (
       <div className={theme.listContent}>
-        <h3>Командировки</h3>
-        <Table
-          model={requestColumns}
-          selectable={false}
-          source={source}
-          className={themeTable.table}
-        />
-        <Link to='/requests/trip/new'>
-          <Button theme={theme} icon='add' floating primary />
-        </Link>
+        <Card>
+          <CardTitle title='Командировки' />
+          <CardText>
+            <Table
+              model={requestColumns}
+              selectable={false}
+              source={source}
+              className={themeTable.table}
+            />
+            <Link to='/requests/trip/new'>
+              <Button theme={theme} icon='add' floating primary />
+            </Link>
+          </CardText>
+        </Card>
       </div>
     );
   }

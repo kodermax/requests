@@ -10,8 +10,8 @@ export default () => compose([
   convert(cors()),
   bodyParser({
     extendTypes: {
-      json: ['application/json'],
-    },
+      json: ['application/json']
+    }
   }),
-  jwtValidate({secret: 'tjqMsP0jo2I7B139vdTMZi324g33tab1', jwtOpts: {algorithms: ['HS256']}}),
+  jwtValidate({secret: 'tjqMsP0jo2I7B139vdTMZi324g33tab1', jwtOpts: {algorithms: ['HS256']}})
 ]);
