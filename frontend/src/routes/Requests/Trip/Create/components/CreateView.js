@@ -4,6 +4,7 @@ import Input from 'react-biz/lib/input';
 import DatePicker from 'react-biz/lib/date_picker';
 import Chip from 'react-biz/lib/chip';
 import {Button} from 'react-biz/lib/button';
+import {RadioGroup, RadioButton} from 'react-biz/lib/radio';
 import theme from './CreateView.scss';
 import SelectUser from '../../../../../components/SelectUser';
 
@@ -98,7 +99,8 @@ export default class CreateView extends Component {
 
   render () {
     return (
-      <div>
+      <div className={theme.create}>
+        <h3>Добавить командировку</h3>
         {this.state.chips ? Object.keys(this.state.chips).map((key) => {
           return (
             <Chip onDeleteClick={this.deleteChip[key]} deletable
@@ -131,16 +133,18 @@ export default class CreateView extends Component {
             <Input type='text' label={this.state.helpFields.target.title} name='target' value={this.state.fields.target}
               onChange={this.changeField.target} multiline error={this.state.errors.target}
             />
-            <Input type='text' label={this.state.helpFields.tripTo.title} name='tripTo' value={this.state.fields.tripTo}
-              onChange={this.changeField.tripTo} multiline error={this.state.errors.tripTo}
-            />
-            <Input type='text' label={this.state.helpFields.tripBack.title} name='tripBack'
-              value={this.state.fields.tripBack}
-              onChange={this.changeField.tripBack} multiline error={this.state.errors.tripBack}
-            />
-            <Input type='text' label={this.state.helpFields.daily.title} name='daily' value={this.state.fields.daily}
-              onChange={this.changeField.daily} multiline error={this.state.errors.daily}
-            />
+            <div className={theme.label}>{this.state.helpFields.tripTo.title}</div>
+            <RadioGroup name='tripTo' value={this.state.fields.tripTo} onChange={this.changeField.tripTo}>
+              <RadioButton label='Автомобиль' value='auto' theme={theme} />
+              <RadioButton label='Самолет' value='plane' theme={theme} />
+              <RadioButton label='Поезд' value='train' theme={theme} />
+            </RadioGroup>
+            <div className={theme.label}>{this.state.helpFields.tripBack.title}</div>
+            <RadioGroup name='tripTo' value={this.state.fields.tripBack} onChange={this.changeField.tripBack}>
+              <RadioButton label='Автомобиль' value='auto' theme={theme} />
+              <RadioButton label='Самолет' value='plane' theme={theme} />
+              <RadioButton label='Поезд' value='train' theme={theme} />
+            </RadioGroup>
             <Input type='text' label={this.state.helpFields.otherExpenses.title} name='otherExpenses'
               value={this.state.fields.otherExpenses} onChange={this.changeField.otherExpenses} multiline
             />

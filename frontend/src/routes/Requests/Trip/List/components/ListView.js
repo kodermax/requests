@@ -82,6 +82,7 @@ export default class ListView extends Component {
     }) : [];
     return (
       <div className={theme.listContent}>
+        <h3>Командировки</h3>
         <Table
           model={requestColumns}
           selectable={false}
