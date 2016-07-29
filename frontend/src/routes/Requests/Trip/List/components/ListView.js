@@ -41,11 +41,6 @@ const requestColumns = {
     title: 'Сооб.',
     type: String
   },
-  category: {
-    sortable: true,
-    title: 'Категория',
-    type: String
-  },
   status: {
     sortable: true,
     title: 'Статус',
@@ -81,15 +76,15 @@ export default class ListView extends Component {
     const source = this.props.data.items ? this.props.data.items.map((item) => {
       let startDate = moment(item.fields.startDate);
       let endDate = moment(item.fields.endDate);
+      let url = `/requests/item/${item.requestId}`;
       return ({
         id: item.requestId,
-        title: item.title,
+        title: <Link to={url}>{item.title}</Link>,
         author: item.author.shortName,
         period: `${startDate.format('DD.MM.YYYY')} - ${endDate.format('DD.MM.YYYY')}`,
         city: item.fields.city,
         changedBy: '',
         messages: item.messages.toString(),
-        category: item.category.title,
         status: item.status.title,
         responsible: ''
       });

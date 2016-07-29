@@ -26,7 +26,7 @@ class Requests {
     this.respond.status = 200;
   }
   async get () {
-    const result = await Request.find({requestId: this.ctx.params.id});
+    const result = await Request.findOne({requestId: this.ctx.params.id});
     if (result) {
       this.respond.body = result;
     } else {

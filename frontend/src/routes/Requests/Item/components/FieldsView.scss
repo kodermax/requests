@@ -1,0 +1,48 @@
+.fields {
+  h5 {
+    color: #394359;
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+  .table {
+    table-layout: auto;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    border-spacing: 0;
+    border-collapse: separate !important;
+    background: #fff;
+    td {
+      padding: 0 !important;
+      max-width: 500px;
+      border: 0 !important;
+      &.key {
+        font-size: 13px;
+        width: 105px;
+        max-width: 175px;
+        word-wrap: break-word;
+        padding: 10px 15px 10px 0 !important;
+        line-height: 1.4 !important;
+      }
+      &.value {
+        padding: 0 !important;
+        max-width: 500px;
+        border: 0 !important;
+      }
+
+      &.value pre {
+        width: 500px;
+        box-sizing: border-box;
+        white-space: pre-wrap;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        padding: 8px 10px;
+        font-size: 12px;
+        word-wrap: normal;
+        border: 0;
+        background-color: #f7f8f9;
+        color: #394359;
+        border-radius: 3px;
+      }
+    }
+  }
+}

@@ -31,11 +31,11 @@ function invalidItem (error) {
     type: FETCH_ITEM_FAILURE
   };
 }
-export const fetchItem = () => {
+export const fetchItem = (id) => {
   return (dispatch, getState) => {
     dispatch(requestItem());
     let token = localStorage.getItem('userToken') || null;
-    return fetch('http://dev.pharm.local:3001/api/requests', {
+    return fetch(`http://dev.pharm.local:3001/api/requests/${id}`, {
       mode: 'cors',
       headers: {
         'Accept': 'application/json',
