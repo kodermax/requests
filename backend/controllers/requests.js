@@ -33,6 +33,7 @@ class Requests {
   async create () {
     await this.parseRequest();
     const user = await User.findOne({btxId: this.ctx.passport.user.Id});
+    this.request.authorId = this.ctx.passport.user.Id;
     if (user) {
       this.request.author = user._id;
     }

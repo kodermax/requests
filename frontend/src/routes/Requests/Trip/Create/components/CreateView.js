@@ -98,7 +98,7 @@ export default class CreateView extends Component {
     };
     if (this.validateFields()) {
       this.props.addItem(data).then(() => {
-        this.context.router.push('/list');
+        this.context.router.push('/requests/trip/list');
       });
     }
   };

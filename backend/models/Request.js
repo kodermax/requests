@@ -4,7 +4,8 @@ import autoIncrement from 'mongoose-auto-increment';
 const Schema = mongoose.Schema;
 autoIncrement.initialize(mongoose.connection);
 const requestSchema = new Schema({
-  author: {type: Schema.Types.Number, ref: 'User'},
+  author: {type: Schema.Types.ObjectId, ref: 'User'},
+  authorId: {type: Schema.Types.Number},
   category: {
     code: String,
     title: String

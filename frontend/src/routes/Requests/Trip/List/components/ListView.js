@@ -4,6 +4,7 @@ import Table from 'react-biz/lib/table';
 import Button from 'react-biz/lib/button';
 import theme from './ListView.scss';
 import {Link} from 'react-router';
+import moment from 'moment';
 import themeTable from '../../../../../styles/table.scss';
 
 const requestColumns = {
@@ -16,6 +17,10 @@ const requestColumns = {
     crop: true,
     sortable: true,
     title: 'Заголовок',
+    type: String
+  },
+  period: {
+    title: 'Период',
     type: String
   },
   author: {
@@ -70,10 +75,13 @@ export default class ListView extends Component {
   };
   render () {
     const source = this.props.data.items ? this.props.data.items.map((item) => {
+      let startDate = moment(item.fields.startDate);
+      let endDate = moment(item.fields.endDate);
       return ({
         id: item.requestId,
         title: item.title,
         author: item.author.shortName,
+        period: `${startDate.format('DD.MM.YYYY')} - ${endDate.format('DD.MM.YYYY')}`,
         changedBy: '',
         messages: item.messages.toString(),
         category: item.category.title,
@@ -83,9 +91,9 @@ export default class ListView extends Component {
     }) : [];
     return (
       <div className={theme.listContent}>
-        <Card>
+        <Card theme={theme}>
           <CardTitle title='Командировки' />
-          <CardText>
+          <CardText theme={theme}>
             <Table
               model={requestColumns}
               selectable={false}

@@ -9,3 +9,13 @@
 .listContent {
   position: relative;
 }
+.listContent *, .listContent *:after, .listContent *:before {
+  box-sizing: border-box;
+}
+.card {
+  display: block;
+  overflow: hidden;
+}
+.cardText {
+  overflow-y: scroll;
+}
