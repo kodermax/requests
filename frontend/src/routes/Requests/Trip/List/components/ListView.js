@@ -23,6 +23,10 @@ const requestColumns = {
     title: 'Период',
     type: String
   },
+  city: {
+    title: 'Город',
+    type: String
+  },
   author: {
     sortable: true,
     title: 'Автор',
@@ -82,6 +86,7 @@ export default class ListView extends Component {
         title: item.title,
         author: item.author.shortName,
         period: `${startDate.format('DD.MM.YYYY')} - ${endDate.format('DD.MM.YYYY')}`,
+        city: item.fields.city,
         changedBy: '',
         messages: item.messages.toString(),
         category: item.category.title,
@@ -92,7 +97,7 @@ export default class ListView extends Component {
     return (
       <div className={theme.listContent}>
         <Card theme={theme}>
-          <CardTitle title='Командировки' />
+          <CardTitle title='Деловые поездки' />
           <CardText theme={theme}>
             <Table
               model={requestColumns}

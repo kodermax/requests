@@ -91,10 +91,10 @@ export default class CreateView extends Component {
     let data = {
       category: {
         code: 'trip',
-        title: 'Командировки'
+        title: 'Деловые поездки'
       },
       fields: this.state.fields,
-      title: 'Заявка на командировку'
+      title: this.state.fields.tripType === 'trip' ? 'Командировка' : 'Служебная поездка'
     };
     if (this.validateFields()) {
       this.props.addItem(data).then(() => {
@@ -108,7 +108,7 @@ export default class CreateView extends Component {
       <div className={theme.create}>
         <Card>
           <CardTitle
-            title='Добавить командировку'
+            title='Добавить деловую поездку'
           />
           <CardText>
             {this.state.helpFields && Object.keys(this.state.helpFields).length !== 0 &&
@@ -123,6 +123,11 @@ export default class CreateView extends Component {
                 <SelectUser label={this.state.helpFields.forUsers.title} onChange={this.changeUsers}
                   value={this.state.forUsers} error={this.state.errors.forUsers}
                 />
+                <div className={theme.label}>{this.state.helpFields.tripType.title}</div>
+                <RadioGroup name='tripType' value={this.state.fields.tripType} onChange={this.changeField.tripType}>
+                  <RadioButton label='Командировка' value='trip' theme={theme} />
+                  <RadioButton label='Служебная Поездка' value='visit' theme={theme} />
+                </RadioGroup>
                 <DatePicker onChange={this.changeField.startDate} label={this.state.helpFields.startDate.title}
                   value={this.state.fields.startDate} error={this.state.errors.startDate}
                 />
