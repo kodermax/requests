@@ -25,6 +25,15 @@ class Requests {
     }
     this.respond.status = 200;
   }
+  async get () {
+    const result = await Request.find({requestId: this.ctx.params.id});
+    if (result) {
+      this.respond.body = result;
+    } else {
+      this.respond.body = {message: 'Ошибка'};
+    }
+    this.respond.status = 200;
+  }
 
   async parseRequest () {
     this.request = (this.ctx.request && this.ctx.request.body) ? this.ctx.request.body : '';
