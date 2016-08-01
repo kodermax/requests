@@ -2,6 +2,12 @@ import React, {Component, PropTypes} from 'react';
 import moment from 'moment';
 import theme from '../../Item/components/FieldsView.scss';
 
+const tripHelps = {
+  auto: 'Автомобиль',
+  plane: 'Самолет',
+  train: 'Поезд'
+};
+
 export default class TripFields extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired
@@ -33,9 +39,15 @@ export default class TripFields extends Component {
               <td className={theme.value}>
                 <pre>
                   {Object.keys(fields.forUsers).map((key) => {
-                    return <span>{fields.forUsers[key].title}</span>;
+                    return <span key={key}>{fields.forUsers[key].title}</span>;
                   })}
                 </pre>
+              </td>
+            </tr>
+            <tr>
+              <td className={theme.key}>Цель поездки:</td>
+              <td className={theme.value}>
+                <pre>{fields.target}</pre>
               </td>
             </tr>
           </tbody>
@@ -50,6 +62,18 @@ export default class TripFields extends Component {
             <tr>
               <td className={theme.key}>Организация:</td>
               <td className={theme.value}><pre>{fields.company}</pre></td>
+            </tr>
+            <tr>
+              <td className={theme.key}>Проезд туда:</td>
+              <td className={theme.value}><pre>{tripHelps[fields.tripTo]}</pre></td>
+            </tr>
+            <tr>
+              <td className={theme.key}>Проезд обратно:</td>
+              <td className={theme.value}><pre>{tripHelps[fields.tripBack]}</pre></td>
+            </tr>
+            <tr>
+              <td className={theme.key}>Другие расходы:</td>
+              <td className={theme.value}><pre>{fields.otherExpenses}</pre></td>
             </tr>
           </tbody>
         </table>
