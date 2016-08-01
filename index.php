@@ -21,6 +21,7 @@ $key = "tjqMsP0jo2I7B139vdTMZi324g33tab1";
 $jwt = Firebase\JWT\JWT::encode($token, $key, 'HS256');
 ?>
     <link href="/local/assets/iconfont/material-icons.css" rel="stylesheet">
+    <link href="/requests/frontend/src/components/RichEditor/RichEditor.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" id="us-font-mdfi-css" href="/requests/frontend/src/static/assets/css/font-mdfi.css?" type="text/css" media="all">
     <input type="hidden" id="user_id" value="<?=$userId?>" />

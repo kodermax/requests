@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {Card, CardTitle, CardText} from 'react-biz/lib/card';
 import FieldsView from './FieldsView';
-import {Editor, EditorState} from 'draft-js';
+import RichEditor from '../../../../components/RichEditor/RichEditor';
 import theme from './ItemView.scss';
 
 export default class ListView extends Component {
@@ -11,19 +11,16 @@ export default class ListView extends Component {
     params: PropTypes.object
   };
 
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.id = this.props.params.id;
-    this.state = {
-      editorState: EditorState.createEmpty()
-    };
-    this.onChangeEditor = (editorState) => this.setState({editorState});
   }
+
   componentDidMount = () => {
     this.props.fetchItem(this.props.params.id);
   };
 
-  render () {
+  render() {
     const {item} = this.props.data;
     if (item) {
       const title = `№${item.requestId} ${item.title}`;
@@ -37,7 +34,7 @@ export default class ListView extends Component {
                 <h6>
                   <span>Обсуждение</span>
                 </h6>
-                <Editor editorState={this.state.editorState} onChange={this.onChangeEditor} />
+                <RichEditor />
               </CardText>
             </Card>
           </div>
@@ -49,6 +46,5 @@ export default class ListView extends Component {
         <div></div>
       );
     }
-
   }
 }
