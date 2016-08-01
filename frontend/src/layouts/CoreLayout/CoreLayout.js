@@ -18,7 +18,7 @@ class CoreLayout extends Component {
     notificationMessage: PropTypes.string
   };
 
-  constructor (props) {
+  constructor(props) {
     super();
     this.snackbarTimeout = this.handleSnackbarTimeout.bind(this);
   }
@@ -27,7 +27,7 @@ class CoreLayout extends Component {
     this.props.hideNotification();
   };
 
-  render () {
+  render() {
     const {children, notification, notificationMessage} = this.props;
     return (
       <div>
@@ -36,13 +36,13 @@ class CoreLayout extends Component {
           {children}
         </div>
         <Snackbar
-          action='Закрыть'
+          action="Закрыть"
           active={notification}
-          icon='done'
+          icon="done"
           label={notificationMessage}
           timeout={3000}
           onTimeout={this.snackbarTimeout}
-          type='accept'
+          type="accept"
         />
       </div>
     );

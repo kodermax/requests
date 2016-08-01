@@ -9,7 +9,7 @@ export default class Header extends Component {
   static contextTypes = {
     router: React.PropTypes.object.isRequired
   };
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.toHome = this.handleToHome.bind(this);
     this.toList = this.handleToList.bind(this);
@@ -23,14 +23,14 @@ export default class Header extends Component {
     this.context.router.push('/requests/list');
   };
 
-  render () {
+  render() {
     return (
       <div>
         <AppBar flat theme={theme}>
-          <Button icon='home' theme={theme} onMouseUp={this.toHome} />
-          <Button label='Все заявки' raised onMouseUp={this.toList} />
+          <Button icon="home" theme={theme} onMouseUp={this.toHome} />
+          <Button label="Все заявки" raised onMouseUp={this.toList} />
           <Badge theme={theme} badgeContent={10} secondary badgeStyle={{top: 12, right: 12}}>
-            <Button label='Исполняю' raised />
+            <Button label="Исполняю" raised />
           </Badge>
         </AppBar>
         <LoadingBar />

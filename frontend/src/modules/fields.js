@@ -5,14 +5,14 @@ export const GET_FIELDS_FAILURE = 'GET_FIELDS_FAILURE';
 // ------------------------------------
 // Actions
 // ------------------------------------
-function requestGetFields () {
+function requestGetFields() {
   return {
     error: false,
     type: GET_FIELDS_REQUEST,
     isFetching: true
   };
 }
-function receiveGetFields (result) {
+function receiveGetFields(result) {
   return {
     data: result,
     isFetching: false,
@@ -20,7 +20,7 @@ function receiveGetFields (result) {
     type: GET_FIELDS_SUCCESS
   };
 }
-function invalidGetFields (error) {
+function invalidGetFields(error) {
   return {
     isFetching: false,
     error: true,
@@ -79,7 +79,7 @@ const initialState = {
   error: false,
   data: []
 };
-export default function fieldsReducer (state = initialState, action) {
+export default function fieldsReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];
   return handler ? handler(state, action) : state;
 }

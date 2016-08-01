@@ -10,11 +10,11 @@ export const HomeView = () => (
     <div className={cx('g-cols')}>
       <div className={cx('one-third')}>
         <div className={cx('w-iconbox', 'iconpos_top', 'size_medium', 'style_circle', 'color_light')}>
-          <div className={cx('w-iconbox-icon')}><i className='mdfi_hardware_phonelink'></i></div>
+          <div className={cx('w-iconbox-icon')}><i className="mdfi_hardware_phonelink"></i></div>
           <h4 className={cx('w-iconbox-title')}>АХД</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>
-              <li><Link to='/requests/trip/list'>Деловые поездки</Link></li>
+              <li><Link to="/requests/trip/list">Деловые поездки</Link></li>
               <li>Канцелярия</li>
               <li>Курьер</li>
               <li>Организация рабочего места</li>
@@ -35,7 +35,7 @@ export const HomeView = () => (
       </div>
       <div className={cx('one-third')}>
         <div className={cx('w-iconbox', 'iconpos_top', 'size_medium', 'style_circle', 'color_light')}>
-          <div className={cx('w-iconbox-icon')}><i className='mdfi_hardware_phonelink'></i></div>
+          <div className={cx('w-iconbox-icon')}><i className="mdfi_hardware_phonelink"></i></div>
           <h4 className={cx('w-iconbox-title')}>ИТ</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>
@@ -53,7 +53,7 @@ export const HomeView = () => (
       </div>
       <div className={cx('one-third')}>
         <div className={cx('w-iconbox', 'iconpos_top', 'size_medium', 'style_circle', 'color_light')}>
-          <div className={cx('w-iconbox-icon')}><i className='mdfi_hardware_phonelink'></i></div>
+          <div className={cx('w-iconbox-icon')}><i className="mdfi_hardware_phonelink"></i></div>
           <h4 className={cx('w-iconbox-title')}>Бухгалтерия</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>
@@ -73,7 +73,7 @@ export const HomeView = () => (
     <div className={cx('g-cols')}>
       <div className={cx('one-third')}>
         <div className={cx('w-iconbox', 'iconpos_top', 'size_medium', 'style_circle', 'color_light')}>
-          <div className={cx('w-iconbox-icon')}><i className='mdfi_file_cloud_upload'></i></div>
+          <div className={cx('w-iconbox-icon')}><i className="mdfi_file_cloud_upload"></i></div>
           <h4 className={cx('w-iconbox-title')}>HR</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>
@@ -87,7 +87,7 @@ export const HomeView = () => (
       </div>
       <div className={cx('one-third')}>
         <div className={cx('w-iconbox', 'iconpos_top', 'size_medium', 'style_circle', 'color_light')}>
-          <div className={cx('w-iconbox-icon')}><i className='mdfi_file_cloud_upload'></i></div>
+          <div className={cx('w-iconbox-icon')}><i className="mdfi_file_cloud_upload"></i></div>
           <h4 className={cx('w-iconbox-title')}>Юридический отдел</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>
@@ -98,7 +98,7 @@ export const HomeView = () => (
       </div>
       <div className={cx('one-third')}>
         <div className={cx('w-iconbox', 'iconpos_top', 'size_medium', 'style_circle', 'color_light')}>
-          <div className={cx('w-iconbox-icon')}><i className='mdfi_file_cloud_upload'></i></div>
+          <div className={cx('w-iconbox-icon')}><i className="mdfi_file_cloud_upload"></i></div>
           <h4 className={cx('w-iconbox-title')}>Отдел закупок</h4>
           <div className={cx('w-iconbox-text')}>
             <ul className={cx('items')}>

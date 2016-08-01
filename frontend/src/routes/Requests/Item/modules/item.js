@@ -8,14 +8,14 @@ export const FETCH_ITEM_FAILURE = 'FETCH_ITEM_FAILURE';
 // ------------------------------------
 // Actions
 // ------------------------------------
-function requestItem () {
+function requestItem() {
   return {
     didInvalidate: false,
     type: FETCH_ITEM_REQUEST,
     isFetching: true
   };
 }
-function receiveItem (result) {
+function receiveItem(result) {
   return {
     data: result,
     isFetching: false,
@@ -23,7 +23,7 @@ function receiveItem (result) {
     type: FETCH_ITEM_SUCCESS
   };
 }
-function invalidItem (error) {
+function invalidItem(error) {
   return {
     data: error,
     isFetching: false,
@@ -72,7 +72,7 @@ const initialState = {
   isFetching: false,
   data: {}
 };
-export default function itemReducer (state = initialState, action) {
+export default function itemReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];
   return handler ? handler(state, action) : state;
 }

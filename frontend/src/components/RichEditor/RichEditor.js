@@ -150,7 +150,7 @@ export default class RichEditor extends Component {
             onChange={this.onChange}
             placeholder="Напишите сообщение..."
             ref="editor"
-            spellCheck={true}
+            spellCheck
           />
         </div>
       </div>

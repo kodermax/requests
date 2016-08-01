@@ -19,7 +19,7 @@ export default class CreateView extends Component {
     getFields: PropTypes.func.isRequired
   };
 
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.changeField = {};
     this.state = {
@@ -33,7 +33,7 @@ export default class CreateView extends Component {
     this.btnSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount () {
+  componentWillMount() {
     if (this.props.fields && this.props.fields.length === 0) {
       this.props.getFields('trip');
     } else {
@@ -41,13 +41,13 @@ export default class CreateView extends Component {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.fields && nextProps.fields.length > 0 && nextProps.fields !== this.props.fields) {
       this.initFields(nextProps.fields);
     }
   }
 
-  initFields (fields) {
+  initFields(fields) {
     let tmpFields = {};
     let helpFields = {};
     fields.map((item) => {
@@ -58,7 +58,7 @@ export default class CreateView extends Component {
     this.setState({fields: tmpFields, helpFields: helpFields, errors: tmpFields});
   }
 
-  validateFields () {
+  validateFields() {
     let errors = [];
     Object.keys(this.state.helpFields).map((key) => {
       if (this.state.helpFields[key].required && this.state.fields[key] === '') {
@@ -103,12 +103,12 @@ export default class CreateView extends Component {
     }
   };
 
-  render () {
+  render() {
     return (
       <div className={theme.create}>
         <Card>
           <CardTitle
-            title='Добавить деловую поездку'
+            title="Добавить деловую поездку"
           />
           <CardText>
             {this.state.helpFields && Object.keys(this.state.helpFields).length !== 0 &&
@@ -124,9 +124,9 @@ export default class CreateView extends Component {
                   value={this.state.forUsers} error={this.state.errors.forUsers}
                 />
                 <div className={theme.label}>{this.state.helpFields.tripType.title}</div>
-                <RadioGroup name='tripType' value={this.state.fields.tripType} onChange={this.changeField.tripType}>
-                  <RadioButton label='Командировка' value='trip' theme={theme} />
-                  <RadioButton label='Служебная Поездка' value='visit' theme={theme} />
+                <RadioGroup name="tripType" value={this.state.fields.tripType} onChange={this.changeField.tripType}>
+                  <RadioButton label="Командировка" value="trip" theme={theme} />
+                  <RadioButton label="Служебная Поездка" value="visit" theme={theme} />
                 </RadioGroup>
                 <DatePicker onChange={this.changeField.startDate} label={this.state.helpFields.startDate.title}
                   value={this.state.fields.startDate} error={this.state.errors.startDate}
@@ -134,40 +134,40 @@ export default class CreateView extends Component {
                 <DatePicker onChange={this.changeField.endDate} label={this.state.helpFields.endDate.title}
                   value={this.state.fields.endDate} error={this.state.errors.endDate}
                 />
-                <Input type='text' label={this.state.helpFields.country.title} name='country'
+                <Input type="text" label={this.state.helpFields.country.title} name="country"
                   value={this.state.fields.country}
                   onChange={this.changeField.country} maxLength={16} error={this.state.errors.country}
                 />
-                <Input type='text' label={this.state.helpFields.city.title} name='city' value={this.state.fields.city}
+                <Input type="text" label={this.state.helpFields.city.title} name="city" value={this.state.fields.city}
                   onChange={this.changeField.city} maxLength={50} error={this.state.errors.city}
                 />
-                <Input type='text' label={this.state.helpFields.company.title} name='company'
+                <Input type="text" label={this.state.helpFields.company.title} name="company"
                   value={this.state.fields.company}
                   onChange={this.changeField.company} maxLength={100} error={this.state.errors.company}
                 />
-                <Input type='text' label={this.state.helpFields.target.title} name='target'
+                <Input type="text" label={this.state.helpFields.target.title} name="target"
                   value={this.state.fields.target}
                   onChange={this.changeField.target} multiline error={this.state.errors.target}
                 />
                 <div className={theme.label}>{this.state.helpFields.tripTo.title}</div>
-                <RadioGroup name='tripTo' value={this.state.fields.tripTo} onChange={this.changeField.tripTo}>
-                  <RadioButton label='Автомобиль' value='auto' theme={theme} />
-                  <RadioButton label='Самолет' value='plane' theme={theme} />
-                  <RadioButton label='Поезд' value='train' theme={theme} />
+                <RadioGroup name="tripTo" value={this.state.fields.tripTo} onChange={this.changeField.tripTo}>
+                  <RadioButton label="Автомобиль" value="auto" theme={theme} />
+                  <RadioButton label="Самолет" value="plane" theme={theme} />
+                  <RadioButton label="Поезд" value="train" theme={theme} />
                 </RadioGroup>
                 <div className={theme.label}>{this.state.helpFields.tripBack.title}</div>
-                <RadioGroup name='tripTo' value={this.state.fields.tripBack} onChange={this.changeField.tripBack}>
-                  <RadioButton label='Автомобиль' value='auto' theme={theme} />
-                  <RadioButton label='Самолет' value='plane' theme={theme} />
-                  <RadioButton label='Поезд' value='train' theme={theme} />
+                <RadioGroup name="tripTo" value={this.state.fields.tripBack} onChange={this.changeField.tripBack}>
+                  <RadioButton label="Автомобиль" value="auto" theme={theme} />
+                  <RadioButton label="Самолет" value="plane" theme={theme} />
+                  <RadioButton label="Поезд" value="train" theme={theme} />
                 </RadioGroup>
-                <Input type='text' label={this.state.helpFields.otherExpenses.title} name='otherExpenses'
+                <Input type="text" label={this.state.helpFields.otherExpenses.title} name="otherExpenses"
                   value={this.state.fields.otherExpenses} onChange={this.changeField.otherExpenses} multiline
                 />
                 <div className={theme.actions}>
-                  <Button label='Отправить' raised primary onMouseUp={this.btnSubmit} />
-                  <Link to='/requests/trip/list'>
-                    <Button label='Отменить' raised />
+                  <Button label="Отправить" raised primary onMouseUp={this.btnSubmit} />
+                  <Link to="/requests/trip/list">
+                    <Button label="Отменить" raised />
                   </Link>
                 </div>
               </div>

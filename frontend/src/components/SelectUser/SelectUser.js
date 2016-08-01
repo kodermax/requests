@@ -12,7 +12,7 @@ export default class SelectUser extends React.Component {
     onChange: React.PropTypes.func,
     value: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.string])
   };
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       countries: '',
@@ -24,10 +24,10 @@ export default class SelectUser extends React.Component {
     this.selectItem = this.handleSelect.bind(this);
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.fetchData();
   }
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.state.user) {
       this.setState({user: nextProps.value});
     }
@@ -84,7 +84,7 @@ export default class SelectUser extends React.Component {
     return (
       <div style={containerStyle}>
         {item.photo ? <Avatar><img src={item.photo} /></Avatar> : <Avatar style={avatarStyle}
-          icon={<FontIcon value='person'
+          icon={<FontIcon value="person"
         />}
       />}
         <div style={contentStyle}>
@@ -98,15 +98,15 @@ export default class SelectUser extends React.Component {
     );
   };
 
-  render () {
+  render() {
     let label = this.props.label ? this.props.label : 'Выбор сотрудника';
     return (
       <Autosuggest
         className={style.suggest}
-        direction='down'
+        direction="down"
         label={label}
         multiple={false}
-        name='user'
+        name="user"
         error={this.props.error}
         onChange={this.inputChange}
         onSelectItem={this.selectItem}

@@ -35,13 +35,13 @@ const styles = {
 };
 
 export class LoadingBar extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       active: false
     };
   }
-  componentDidMount () {
+  componentDidMount() {
     this.timers = {};
 
     this.timers.bar1 = this.barUpdate('bar1', 0, this.refs.bar1, [
@@ -57,7 +57,7 @@ export class LoadingBar extends Component {
     }, 850);
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.loading > 0 && nextProps.loading === 0) {
       setTimeout(() => { this.hideBar(); }, 500, true);
     } else {
@@ -65,12 +65,12 @@ export class LoadingBar extends Component {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     clearTimeout(this.timers.bar1);
     clearTimeout(this.timers.bar2);
   }
 
-  barUpdate (id, step, barElement, stepValues) {
+  barUpdate(id, step, barElement, stepValues) {
     step = step || 0;
     step %= 4;
 
@@ -91,21 +91,21 @@ export class LoadingBar extends Component {
     this.timers[id] = setTimeout(() => this.barUpdate(id, step + 1, barElement, stepValues), 420);
   }
 
-  showBar () {
+  showBar() {
     this.setState({ active: true });
   }
-  hideBar () {
+  hideBar() {
     this.setState({ active: false });
   }
 
-  render () {
+  render() {
     const style = {};
     style.display = this.state.active === true ? 'block' : 'none';
     return (
       <div style={Object.assign({}, styles.root, style)}>
         <div style={styles.bar}>
-          <div ref='bar1' style={styles.barFragment1}></div>
-          <div ref='bar2' style={styles.barFragment2}></div>
+          <div ref="bar1" style={styles.barFragment1}></div>
+          <div ref="bar2" style={styles.barFragment2}></div>
         </div>
       </div>
     );
@@ -113,10 +113,10 @@ export class LoadingBar extends Component {
 }
 
 LoadingBar.propTypes = {
-  style: PropTypes.object,
-  className: PropTypes.string,
   actions: PropTypes.object,
-  loading: PropTypes.number
+  className: PropTypes.string,
+  loading: PropTypes.number,
+  style: PropTypes.object
 };
 
 LoadingBar.defaultProps = {

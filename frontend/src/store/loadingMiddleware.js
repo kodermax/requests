@@ -2,7 +2,7 @@ import {showLoadingBar, hideLoadingBar} from './loading';
 
 const defaultTypeSuffixes = ['REQUEST', 'SUCCESS', 'FAILURE'];
 
-function createLoadingBarMiddleware (config = {}) {
+function createLoadingBarMiddleware(config = {}) {
   const promiseTypeSuffixes = config.promiseTypeSuffixes || defaultTypeSuffixes;
   return ({dispatch}) => next => action => {
     if (action.type === undefined) {

@@ -13,7 +13,7 @@ export default class TripFields extends Component {
     fields: PropTypes.object.isRequired
   };
 
-  render () {
+  render() {
     const {fields} = this.props;
     const startDate = moment(fields.startDate);
     const endDate = moment(fields.endDate);

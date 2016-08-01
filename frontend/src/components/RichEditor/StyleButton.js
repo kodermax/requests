@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import classnames from 'classnames';
 
 export default class StyleButton extends Component {
   static propTypes = {

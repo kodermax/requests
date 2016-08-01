@@ -9,14 +9,14 @@ export const FETCH_ITEMS_FAILURE = 'FETCH_ITEMS_FAILURE';
 // ------------------------------------
 // Actions
 // ------------------------------------
-function requestItems () {
+function requestItems() {
   return {
     didInvalidate: false,
     type: FETCH_ITEMS_REQUEST,
     isFetching: true
   };
 }
-function receiveItems (result) {
+function receiveItems(result) {
   return {
     data: result,
     isFetching: false,
@@ -24,7 +24,7 @@ function receiveItems (result) {
     type: FETCH_ITEMS_SUCCESS
   };
 }
-function invalidItems (error) {
+function invalidItems(error) {
   return {
     data: error,
     isFetching: false,
@@ -73,7 +73,7 @@ const initialState = {
   isFetching: false,
   data: {}
 };
-export default function listReducer (state = initialState, action) {
+export default function listReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];
   return handler ? handler(state, action) : state;
 }

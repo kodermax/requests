@@ -6,7 +6,7 @@ export default class FieldsView extends Component {
     data: PropTypes.object.isRequired
   };
 
-  render () {
+  render() {
     const {data} = this.props;
     return (
       <div>

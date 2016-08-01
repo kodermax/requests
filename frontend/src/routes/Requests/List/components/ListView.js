@@ -45,8 +45,8 @@ const requestColumns = {
 
 export default class ListView extends Component {
   static propTypes = {
-    fetchItems: PropTypes.func.isRequired,
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
+    fetchItems: PropTypes.func.isRequired
   };
   componentDidMount = () => {
     this.props.fetchItems();
@@ -56,7 +56,7 @@ export default class ListView extends Component {
     this.setState({selected});
   };
 
-  render () {
+  render() {
     const source = this.props.data.items ? this.props.data.items.map((item) => {
       return ({
         id: item.requestId,

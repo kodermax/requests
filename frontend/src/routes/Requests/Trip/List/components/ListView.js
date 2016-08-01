@@ -60,7 +60,7 @@ export default class ListView extends Component {
     data: PropTypes.object.isRequired,
     fetchItems: PropTypes.func.isRequired
   };
-  constructor (props, context) {
+  constructor(props, context) {
     super(props, context);
     this.toCreate = this.handleCreate.bind(this);
   }
@@ -72,7 +72,7 @@ export default class ListView extends Component {
     e.preventDefault();
     this.context.router.push('/requests/trip/new');
   };
-  render () {
+  render() {
     const source = this.props.data.items ? this.props.data.items.map((item) => {
       let startDate = moment(item.fields.startDate);
       let endDate = moment(item.fields.endDate);
@@ -92,7 +92,7 @@ export default class ListView extends Component {
     return (
       <div className={theme.listContent}>
         <Card theme={theme}>
-          <CardTitle title='Деловые поездки' />
+          <CardTitle title="Деловые поездки" />
           <CardText theme={theme}>
             <Table
               model={requestColumns}
@@ -100,8 +100,8 @@ export default class ListView extends Component {
               source={source}
               className={themeTable.table}
             />
-            <Link to='/requests/trip/new'>
-              <Button theme={theme} icon='add' floating primary />
+            <Link to="/requests/trip/new">
+              <Button theme={theme} icon="add" floating primary />
             </Link>
           </CardText>
         </Card>

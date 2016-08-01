@@ -5,14 +5,14 @@ export const ADD_ITEM_FAILURE = 'ADD_ITEM_FAILURE';
 // ------------------------------------
 // Actions
 // ------------------------------------
-function requestAddItem () {
+function requestAddItem() {
   return {
     error: false,
     type: ADD_ITEM_REQUEST,
     isFetching: true
   };
 }
-function receiveAddItem (result) {
+function receiveAddItem(result) {
   return {
     data: result.id,
     isFetching: false,
@@ -20,7 +20,7 @@ function receiveAddItem (result) {
     type: ADD_ITEM_SUCCESS
   };
 }
-function invalidAddItem (error) {
+function invalidAddItem(error) {
   return {
     isFetching: false,
     error: true,
@@ -28,7 +28,7 @@ function invalidAddItem (error) {
     type: ADD_ITEM_FAILURE
   };
 }
-function showNotification (text) {
+function showNotification(text) {
   return {
     message: text,
     type: 'SHOW_NOTIFICATION'
@@ -88,7 +88,7 @@ const initialState = {
   error: false,
   data: {}
 };
-export default function addReducer (state = initialState, action) {
+export default function addReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];
   return handler ? handler(state, action) : state;
 }

@@ -3,7 +3,7 @@ import {injectReducer} from '../../../../store/reducers';
 export default (store) => ({
   path: 'trip/list',
   /* Вызывается компонет при совпаденния path с route list*/
-  getComponent (nextState, cb) {
+  getComponent(nextState, cb) {
     /* Разделяем код с помощью webpack */
     require.ensure([], (require) => {
       const list = require('./containers/ListContainer').default;
