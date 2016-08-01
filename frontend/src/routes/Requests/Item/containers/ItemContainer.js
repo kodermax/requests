@@ -1,5 +1,6 @@
 import {connect} from 'react-redux';
 import {fetchItem} from '../modules/item';
+import {fetchMessages} from '../modules/messages';
 import ItemView from '../components/ItemView';
 
 /*  Object of action creators (can also be function that returns object).
@@ -7,11 +8,13 @@ import ItemView from '../components/ItemView';
  implementing our wrapper around increment; the component doesn't care   */
 
 const mapActionCreators = {
-  fetchItem
+  fetchItem,
+  fetchMessages
 };
 
 const mapStateToProps = (state) => ({
-  data: state.item
+  data: state.item,
+  messages: state.messages
 });
 
 export default connect(mapStateToProps, mapActionCreators)(ItemView);

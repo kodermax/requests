@@ -2,12 +2,14 @@ import React, {Component, PropTypes} from 'react';
 import {Card, CardTitle, CardText} from 'react-biz/lib/card';
 import FieldsView from './FieldsView';
 import RichEditor from '../../../../components/RichEditor/RichEditor';
+import Disqus from './Disqus';
 import theme from './ItemView.scss';
 
 export default class ListView extends Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
     fetchItem: PropTypes.func.isRequired,
+    fetchMessages: PropTypes.func.isRequired,
     params: PropTypes.object
   };
 
@@ -34,6 +36,7 @@ export default class ListView extends Component {
                 <h6>
                   <span>Обсуждение</span>
                 </h6>
+                <Disqus fetchMessages={this.props.fetchMessages} requestId={this.props.params.id} />
                 <RichEditor />
               </CardText>
             </Card>
