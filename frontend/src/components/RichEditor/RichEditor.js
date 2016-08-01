@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {Editor, EditorState, Modifier, RichUtils} from 'draft-js';
 import InlineStyleControls from './InlineStyleControls';
 import BlockStyleControls from './BlockStyleControls';
@@ -42,6 +42,9 @@ function getBlockStyle(block) {
 }
 
 export default class RichEditor extends Component {
+  static propTypes = {
+    onChange: PropTypes.func.isRequired
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -49,7 +52,7 @@ export default class RichEditor extends Component {
     };
 
     this.focus = () => this.refs.editor.focus();
-    this.onChange = (editorState) => this.setState({editorState});
+    this.onChange = (editorState) => this.setState({editorState}, () => { this.props.onChange(editorState); });
 
     this.handleKeyCommand = (command) => this._handleKeyCommand(command);
     this.toggleBlockType = (type) => this._toggleBlockType(type);
