@@ -29,9 +29,6 @@ export default class ListView extends Component {
     this.props.fetchItem(this.props.params.id);
   };
   handleAddMessage = () => {
-    console.log(this.state.editor);
-  }
-  handleEditorChange = (editorState) => {
     let options = {
       inlineStyles: {
         red: {style: {color: 'rgba(255, 0, 0, 1.0)'}},
@@ -67,8 +64,13 @@ export default class ListView extends Component {
         }
       }
     };
-    let html = stateToHTML(editorState.getCurrentContent(), options);
-    console.log(html);
+    let html = stateToHTML(this.state.editor.getCurrentContent(), options);
+    let request = {
+      message: html
+    };
+  }
+  handleEditorChange = (editorState) => {
+    this.setState({editor: editorState});
   }
 
   render() {
@@ -79,15 +81,15 @@ export default class ListView extends Component {
         <div className={theme.itemContent}>
           {item ? <div>
             <Card>
-              <CardTitle title={title}/>
+              <CardTitle title={title} />
               <CardText theme={theme}>
-                <FieldsView data={item}/>
+                <FieldsView data={item} />
                 <h6>
                   <span>Обсуждение</span>
                 </h6>
-                <Disqus fetchMessages={this.props.fetchMessages} requestId={this.props.params.id}/>
-                <RichEditor onChange={this.editorChange}/>
-                <Button label="Отправить" raised primary onMouseUp={this.btnAddMessage}/>
+                <Disqus fetchMessages={this.props.fetchMessages} requestId={this.props.params.id} />
+                <RichEditor onChange={this.editorChange} />
+                <Button label="Отправить" raised primary onMouseUp={this.btnAddMessage} />
               </CardText>
             </Card>
           </div>

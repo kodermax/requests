@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+import {addMessage} from '../modules/add_message';
 import {fetchItem} from '../modules/item';
 import {fetchMessages} from '../modules/messages';
 import ItemView from '../components/ItemView';
@@ -8,11 +9,13 @@ import ItemView from '../components/ItemView';
  implementing our wrapper around increment; the component doesn't care   */
 
 const mapActionCreators = {
+  addMessage,
   fetchItem,
   fetchMessages
 };
 
 const mapStateToProps = (state) => ({
+
   data: state.item,
   messages: state.messages
 });
