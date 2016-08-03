@@ -72,7 +72,9 @@ export default class ListView extends Component {
     let request = {
       message: html
     };
-    this.props.addMessage(this.props.params.id, request);
+    this.props.addMessage(this.props.params.id, request).then(() => {
+      this.props.fetchMessages(this.props.params.id);
+    });
   }
   handleEditorChange = (editorState) => {
     this.setState({editor: editorState});
