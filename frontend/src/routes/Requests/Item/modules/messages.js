@@ -59,7 +59,7 @@ const ACTION_HANDLERS = {
     return {
       isFetching: false,
       didInvalidate: false,
-      messages: action.data
+      data: action.data
     };
   },
   [FETCH_MESSAGES_FAILURE]: (stat, action) => action.data
@@ -72,7 +72,7 @@ const initialState = {
   isFetching: false,
   data: {}
 };
-export default function itemReducer(state = initialState, action) {
+export default function messagesReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];
   return handler ? handler(state, action) : state;
 }

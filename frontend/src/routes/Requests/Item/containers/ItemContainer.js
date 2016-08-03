@@ -15,8 +15,8 @@ const mapActionCreators = {
 };
 
 const mapStateToProps = (state) => ({
-  data: state.item,
-  messages: state.messages
+  item: state.item.data,
+  messages: state.messages.data
 });
 
 export default connect(mapStateToProps, mapActionCreators)(ItemView);

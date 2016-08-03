@@ -18,6 +18,8 @@ class Requests {
     if (this.ctx.query.conditions) {
       conditions = JSON.parse(this.ctx.query.conditions);
     }
+    const request = await Request.findOne({requestId: this.ctx.params.id});
+    conditions.request = request.id;
     const result = await Message.find(conditions).populate('author');
     if (result) {
       this.respond.body = result;

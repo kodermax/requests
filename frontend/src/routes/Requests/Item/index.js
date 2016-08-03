@@ -11,8 +11,8 @@ export default (store) => ({
       const messagesReducer = require('./modules/messages').default;
 
       // Добавляем редьюсер в хранилище с ключом item
-      injectReducer(store, {key: 'item', reducer});
-      injectReducer(store, {key: 'messages', messagesReducer});
+      injectReducer(store, {key: 'item', reducer: reducer});
+      injectReducer(store, {key: 'messages', reducer: messagesReducer});
       cb(null, item);
     }, 'item');
   }

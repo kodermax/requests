@@ -10,9 +10,10 @@ import theme from './ItemView.scss';
 export default class ListView extends Component {
   static propTypes = {
     addMessage: PropTypes.func.isRequired,
-    data: PropTypes.object.isRequired,
+    item: PropTypes.object.isRequired,
     fetchItem: PropTypes.func.isRequired,
     fetchMessages: PropTypes.func.isRequired,
+    messages: PropTypes.any.isRequired,
     params: PropTypes.object
   };
 
@@ -27,7 +28,9 @@ export default class ListView extends Component {
   }
 
   componentDidMount = () => {
-    this.props.fetchItem(this.props.params.id);
+    this.props.fetchItem(this.props.params.id).then(() => {
+      this.props.fetchMessages(this.props.params.id);
+    });
   };
   handleAddMessage = () => {
     let options = {
@@ -76,12 +79,12 @@ export default class ListView extends Component {
   }
 
   render() {
-    const {item} = this.props.data;
+    const {item} = this.props;
     if (item) {
       const title = `№${item.requestId} ${item.title}`;
       return (
         <div className={theme.itemContent}>
-          {item ? <div>
+          {Object.keys(item).length > 0 ? <div>
             <Card>
               <CardTitle title={title} />
               <CardText theme={theme}>
@@ -89,7 +92,7 @@ export default class ListView extends Component {
                 <h6>
                   <span>Обсуждение</span>
                 </h6>
-                <Disqus fetchMessages={this.props.fetchMessages} requestId={this.props.params.id} />
+                <Disqus messages={this.props.messages} />
                 <RichEditor onChange={this.editorChange} />
                 <Button label="Отправить" raised primary onMouseUp={this.btnAddMessage} />
               </CardText>

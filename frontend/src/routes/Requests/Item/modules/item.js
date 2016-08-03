@@ -59,7 +59,7 @@ const ACTION_HANDLERS = {
     return {
       isFetching: false,
       didInvalidate: false,
-      item: action.data
+      data: action.data
     };
   },
   [FETCH_ITEM_FAILURE]: (stat, action) => action.data

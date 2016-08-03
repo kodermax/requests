@@ -3,32 +3,23 @@ import style from './Disqus.scss';
 import Avatar from 'react-biz/lib/avatar';
 import FontIcon from 'react-biz/lib/font_icon';
 import classNames from 'classnames';
+import moment from 'moment';
 
 export default class Disqus extends Component {
   static propTypes = {
-    fetchMessages: PropTypes.func.isRequired,
-    requestId: PropTypes.string.isRequired
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      messages: []
-    };
-    console.log(props);
+    messages: PropTypes.any.isRequired
   }
 
   render() {
-    const messageNodes = this.state.messages ? this.state.messages.map((message, i) => {
+    const {messages} = this.props;
+    const messageNodes = messages && Object.keys(messages).length > 0 ? Object.keys(messages).map((key, i) => {
+      let message = messages[key];
       return (
-        <div className={classNames(style.ticketMessage, {[style.supportMessage]: message.author.supportTeam})}
-          key={i}
-        >
+        <div className={classNames(style.ticketMessage)} key={i}>
           <div className={style.messageHead}>
-            {!message.author.supportTeam ? <span>Клиент: </span> : <span>Сотрудник техподдержки: </span>}
-            {message.author.title}
+            {message.author.shortName}
             <span className={style.tDelimeter}>|</span>
-            {message.dates.created}
+            {moment(message.createdAt).format('DD.MM.YYYY h:mm:ss')}
           </div>
           <div className={style.messageBody}>
             <div className={style.avatarBlock}>
@@ -40,16 +31,6 @@ export default class Disqus extends Component {
             <div className={style.content}>
               <div className={style.title}></div>
               <div className={style.text} dangerouslySetInnerHTML={{__html: message.message}}></div>
-              {message.files.length > 0 ? <div className={style.filesBlock}>
-                <div className={style.filesTitle}>Вложения</div>
-                {message.files.map((item, i) => {
-                  return (
-                    <div className={style.file} key={i}>
-                      <a href={item.path}>{item.name}</a>
-                    </div>
-                  );
-                })}
-              </div> : undefined}
             </div>
           </div>
         </div>
