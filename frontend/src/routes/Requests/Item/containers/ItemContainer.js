@@ -15,7 +15,6 @@ const mapActionCreators = {
 };
 
 const mapStateToProps = (state) => ({
-
   data: state.item,
   messages: state.messages
 });

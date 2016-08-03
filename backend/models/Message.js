@@ -8,7 +8,8 @@ const messageSchema = new Schema({
   request: {type: Schema.Types.ObjectId, ref: 'Request'}
 },
   {
-    timestamps: true
+    timestamps: true,
+    collection: 'requests_messages'
   }
 );
 export default mongoose.model('Message', messageSchema);

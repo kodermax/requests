@@ -9,6 +9,7 @@ import theme from './ItemView.scss';
 
 export default class ListView extends Component {
   static propTypes = {
+    addMessage: PropTypes.func.isRequired,
     data: PropTypes.object.isRequired,
     fetchItem: PropTypes.func.isRequired,
     fetchMessages: PropTypes.func.isRequired,
@@ -68,6 +69,7 @@ export default class ListView extends Component {
     let request = {
       message: html
     };
+    this.props.addMessage(this.props.params.id, request);
   }
   handleEditorChange = (editorState) => {
     this.setState({editor: editorState});

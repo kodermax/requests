@@ -38,7 +38,7 @@ export const addMessage = (id, data) => {
   return (dispatch, getState) => {
     dispatch(requestAddMessage());
     let token = localStorage.getItem('userToken') || null;
-    return fetch(`http://10.1.1.219:3001/api/requests${id}/message`,
+    return fetch(`http://10.1.1.219:3001/api/requests/${id}/message`,
       {
         method: 'POST',
         mode: 'cors',
