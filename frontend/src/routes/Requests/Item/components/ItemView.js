@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {Card, CardTitle, CardText} from 'react-biz/lib/card';
 import {Button} from 'react-biz/lib/button';
 import FieldsView from './FieldsView';
+import ActionsView from './ActionsView';
 import RichEditor from '../../../../components/RichEditor/RichEditor';
 import Disqus from './Disqus';
 import {stateToHTML} from 'draft-js-export-html';
@@ -9,9 +10,11 @@ import theme from './ItemView.scss';
 
 export default class ListView extends Component {
   static propTypes = {
+    actions: PropTypes.array.isRequired,
     addMessage: PropTypes.func.isRequired,
     item: PropTypes.object.isRequired,
     fetchItem: PropTypes.func.isRequired,
+    fetchItemActions: PropTypes.func.isRequired,
     fetchMessages: PropTypes.func.isRequired,
     messages: PropTypes.any.isRequired,
     params: PropTypes.object
@@ -28,11 +31,16 @@ export default class ListView extends Component {
   }
 
   componentDidMount = () => {
-    this.props.fetchItem(this.props.params.id).then(() => {
-      this.props.fetchMessages(this.props.params.id);
-    });
+    this.fetchData();
   };
-  handleAddMessage = () => {
+
+  async fetchData() {
+    await this.props.fetchItem(this.props.params.id);
+    await this.props.fetchMessages(this.props.params.id);
+    await this.props.fetchItemActions(this.props.params.id);
+  }
+
+  handleAddMessage() {
     let options = {
       inlineStyles: {
         red: {style: {color: 'rgba(255, 0, 0, 1.0)'}},
@@ -72,17 +80,15 @@ export default class ListView extends Component {
     let request = {
       message: html
     };
-    this.props.addMessage(this.props.params.id, request).then(() => {
-      this.props.fetchMessages(this.props.params.id);
-    });
+    this.props.addMessage(this.props.params.id, request);
   }
   handleEditorChange = (editorState) => {
     this.setState({editor: editorState});
   }
 
   render() {
-    const {item} = this.props;
-    if (item) {
+    const {actions, item, messages} = this.props;
+    if (Object.keys(actions).length > 0 && Object.keys(item).length > 0 && Object.keys(messages).length >= 0) {
       const title = `№${item.requestId} ${item.title}`;
       return (
         <div className={theme.itemContent}>
@@ -90,11 +96,12 @@ export default class ListView extends Component {
             <Card>
               <CardTitle title={title} />
               <CardText theme={theme}>
+                <ActionsView actions={actions} />
                 <FieldsView data={item} />
                 <h6>
                   <span>Обсуждение</span>
                 </h6>
-                <Disqus messages={this.props.messages} />
+                <Disqus messages={messages} />
                 <RichEditor onChange={this.editorChange} />
                 <Button label="Отправить" raised primary onMouseUp={this.btnAddMessage} />
               </CardText>

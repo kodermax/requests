@@ -1,20 +1,19 @@
 import {connect} from 'react-redux';
 import {addMessage} from '../modules/add_message';
 import {fetchItem} from '../modules/item';
+import {fetchItemActions} from '../modules/item_actions';
 import {fetchMessages} from '../modules/messages';
 import ItemView from '../components/ItemView';
-
-/*  Object of action creators (can also be function that returns object).
- Keys will be passed as props to presentational components. Here we are
- implementing our wrapper around increment; the component doesn't care   */
 
 const mapActionCreators = {
   addMessage,
   fetchItem,
+  fetchItemActions,
   fetchMessages
 };
 
 const mapStateToProps = (state) => ({
+  actions: state.actions.data,
   item: state.item.data,
   messages: state.messages.data
 });

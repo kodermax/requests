@@ -9,10 +9,12 @@ export default (store) => ({
       const item = require('./containers/ItemContainer').default;
       const reducer = require('./modules/item').default;
       const messagesReducer = require('./modules/messages').default;
+      const itemActionsReducer = require('./modules/item_actions').default;
 
       // Добавляем редьюсер в хранилище с ключом item
       injectReducer(store, {key: 'item', reducer: reducer});
       injectReducer(store, {key: 'messages', reducer: messagesReducer});
+      injectReducer(store, {key: 'actions', reducer: itemActionsReducer});
       cb(null, item);
     }, 'item');
   }

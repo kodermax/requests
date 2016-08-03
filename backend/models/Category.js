@@ -3,6 +3,10 @@ import mongoose from 'mongoose';
 const categorySchema = new mongoose.Schema(
   {
     items: [{
+      approval: {
+        manager: Boolean,
+        users: []
+      },
       code: String,
       fields: [{
         code: String,
